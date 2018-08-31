@@ -129,42 +129,63 @@ GameOver(
 ### 1.States and transitions
 
 #### 1.1 Write states
-- creat main.js
+- Creat main.js
 - Write build DOM function
 - Write main function
 - Call main function when load page
 - Build splash DOM
 - Write buttons for the splash
 - write build gameOver
-- build gameOver DOM
-- creat game.js 
-- build Game DOM
-- create canvas with width and height of the parent
+- Build gameOver DOM
+- Creat game.js 
+- Build Game DOM
+- Create canvas with width and height of the parent
 
 
 #### 1.2 Write transitions
-- write startGame in main
-- write destroy splash
-- write destroy game
-- write destroy gameOver
-- write destroy main
+- Write startGame in main
+- Write destroy splash
+- Write destroy game
+- Write destroy gameOver
+- Write destroy main
 
 
 ### Game
-- write the loop
+- Write the loop
+- Start loop 
+- Create new Player
+- Add event listeners
+- Inside the loop update and draw
 
 
 ### Player
-- Write Player constructor with attributes and methods. Test.
+- Write Player constructor with attributes.
+- Write update and draw methods.
+- Write method set direction with eventListenner 
 
 
 ### Enemy
-- Write Enemy constructor with attributes and methods. Test. 
+- Write Enemy constructor with attributes.
+- Write update and draw methods.  
+- Write check if in screen ??
 - Make ONE Enemy move to Player position.
 
+
 ### Collision 
-- Write Player not out the canvas.
-- Write collision Enemy and Player. Loose lives. 
+- Write Player not out the canvas in the Player.update.
+
+
+### Enemy direction
+- Write method enemy goes were player is
+
+
+### Collision 
+- Write Player not out the canvas in the Player.update.
+- Write collision Enemy and Player. Loose lives.
+
+
+### Lives and score
+- Update lives and score. 
 
 
 ## Links
