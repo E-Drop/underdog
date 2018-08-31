@@ -25,11 +25,69 @@ One ball moving around all the screen and smaller balls trying to get to the big
 - Add images to the background player and enemies.
 
 ### Map and obstacles
--Build different maps with different obstacles.
+- Build different maps with different obstacles.
 
 
 ## Data structure
-Classes and methods definition.
+### Game
+'''
+function Game(
+ self.gameIsOver = false;
+ self.gameIsPause = false;
+ self.score = 0;
+ self.username = input;
+ self.ctx:
+)
+
+Game.start()
+Game.startLoop(
+ function loop (if !gameOver && !gamePaused)
+   update ()
+   clearCanvas()
+   draw ()
+)
+
+Game.checkIfEnemiesCollidePlayer()
+Game.onOver()
+Game.gameOver()
+Game.destroy()
+'''
+
+### Player
+'''
+function Player ((canvas, lives,)
+ self.x;
+ self.y;
+ self.direction;
+ self.size;
+ self.canvas;
+ self.ctx;
+ self.lives;
+)
+Player.setDirection()
+Player.checkcollision()
+Player.collied(--lives)
+Player.update()
+Player.draw()
+
+'''
+
+### Enemy
+'''
+function Enemy (Player, canvas, x, y, speed)
+ self.x;
+ self.y;
+ self.direction;
+ self.size;
+ self.canvas;
+ self.ctx;
+)
+Enemy.setDirection(Player)
+Enemy.checkcollision()
+Enemy.update()
+Enemy.draw()
+
+'''
 
 
 ## States y States Transitions
@@ -63,7 +121,7 @@ GameOver(
 
 ## Task
 
-1. Create screen transitions to go 
+1. Create screen transitions to go from Splash to Game, from game to game over and from Game Over to Splash or Game.
 
 
 ## Links
