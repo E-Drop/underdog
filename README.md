@@ -30,7 +30,7 @@ One ball moving around all the screen and smaller balls trying to get to the big
 
 ## Data structure
 ### Game
-'''
+```javascript
 function Game(
  self.gameIsOver = false;
  self.gameIsPause = false;
@@ -51,10 +51,11 @@ Game.checkIfEnemiesCollidePlayer()
 Game.onOver()
 Game.gameOver()
 Game.destroy()
-'''
+```
 
 ### Player
-'''
+
+```javascript
 function Player ((canvas, lives,)
  self.x;
  self.y;
@@ -70,10 +71,10 @@ Player.collied(--lives)
 Player.update()
 Player.draw()
 
-'''
+```
 
 ### Enemy
-'''
+´´´javascript
 function Enemy (Player, canvas, x, y, speed)
  self.x;
  self.y;
@@ -87,7 +88,7 @@ Enemy.checkcollision()
 Enemy.update()
 Enemy.draw()
 
-'''
+```
 
 
 ## States y States Transitions
