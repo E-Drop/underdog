@@ -9,22 +9,22 @@ One ball moving around all the screen and smaller balls trying to get to the big
 
 
 ## Backlog
-###Path finding
+### Path finding
 - The enemies follow your path.
 
-###Shooting
+### Shooting
 - The player and the enemies are able to shoot and take lives or be destroyed.
 
-###Levels
+### Levels
 - Once the player has killed all the enemies goes to the next level. 
 
-###Music
+### Music
 - Add adventure music.
 
-###Images
+### Images
 - Add images to the background player and enemies.
 
-###Map and obstacles
+### Map and obstacles
 -Build different maps with different obstacles.
 
 
