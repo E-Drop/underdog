@@ -1,20 +1,31 @@
 # underdog
 
 ## Description
-Game with one player moving around the screen trying to scape from the enemies going after him.
+Game based on one hunter going around different maps with "zombies" trying to catch him. Both the hunter and the enemies can shoot. The hunter will go through different levels were there will be more enemies. 
 
 
 ## MVP (DOM - CANVAS)
-MVP definition, deliverables.
+One ball moving around all the screen and smaller balls trying to get to the big one. You lose if they catch you. 
 
 
 ## Backlog
-Path finding
-Shooting
-Levels
-Music
-Images
-Map and obstacles
+###Path finding
+- The enemies follow your path.
+
+###Shooting
+- The player and the enemies are able to shoot and take lives or be destroyed.
+
+###Levels
+- Once the player has killed all the enemies goes to the next level. 
+
+###Music
+- Add adventure music.
+
+###Images
+- Add images to the background player and enemies.
+
+###Map and obstacles
+-Build different maps with different obstacles.
 
 
 ## Data structure
