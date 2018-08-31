@@ -200,7 +200,7 @@ GameOver(
 ### Git
 URls for the project repo and deploy
 https://github.com/axelgar/underdog
-[Link Deploy](http://github.com)
+https://axelgar.github.io/underdog/.
 
 
 ### Slides
