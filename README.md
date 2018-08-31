@@ -97,14 +97,15 @@ Enemy.draw()
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 
+### Splash
 - splashScreen
-splash(2
+splash( 2
 - removeGameOver (if there is one)
 - build splash DOM ()
 - addEventListenners()
 )
 
-
+### Game
 - gameScreen
 startGame( 1
 -remove splash
@@ -114,7 +115,7 @@ startGame( 1
 - gameStart()  
 )
 
-
+### Game Over
 - gameoverScreen
 GameOver(
 - game destroy
