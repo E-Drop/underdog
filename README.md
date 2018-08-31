@@ -153,8 +153,10 @@ GameOver(
 ### Game
 - Write the loop
 - Start loop 
-- Create new Player
 - Add event listeners
+- Create new Player
+- Create one enemy
+- Create more enemies inside the loop
 - Inside the loop update and draw
 
 
