@@ -76,7 +76,8 @@ Player.draw()
 ```
 
 ### Enemy
-´´´javascript
+
+```javascript
 function Enemy (Player, canvas, x, y, speed)
  self.x;
  self.y;
