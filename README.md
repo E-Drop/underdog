@@ -158,6 +158,7 @@ GameOver(
 - Create one enemy
 - Create more enemies inside the loop
 - Inside the loop update and draw
+- Clear canvas
 
 
 ### Player
