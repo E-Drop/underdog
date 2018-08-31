@@ -126,20 +126,45 @@ GameOver(
 
 ## Task
 
-1. Create screen transitions to go from Splash to Game, from game to game over and from Game Over to Splash or Game. With buttons and TimeOut. Test.
+### 1.States and transitions
 
-2. Create canvas. Test.
+#### 1.1 Write states
+- creat main.js
+- Write build DOM function
+- Write main function
+- Call main function when load page
+- Build splash DOM
+- Write buttons for the splash
+- write build gameOver
+- build gameOver DOM
+- creat game.js 
+- build Game DOM
+- create canvas with width and height of the parent
 
-3. Write Player constructor with attributes and methods. Test.
 
-4. Write Player not out the canvas.
+#### 1.2 Write transitions
+- write startGame in main
+- write destroy splash
+- write destroy game
+- write destroy gameOver
+- write destroy main
 
-5. Write Enemy constructor with attributes and methods. Test. 
 
-6. Make ONE Enemy move to Player position.
+### Game
+- write the loop
 
-7. Write collision Enemy and Player. Loose lives. 
 
+### Player
+- Write Player constructor with attributes and methods. Test.
+
+
+### Enemy
+- Write Enemy constructor with attributes and methods. Test. 
+- Make ONE Enemy move to Player position.
+
+### Collision 
+- Write Player not out the canvas.
+- Write collision Enemy and Player. Loose lives. 
 
 
 ## Links
