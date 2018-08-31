@@ -5,6 +5,8 @@ Game based on one hunter going around different maps with "zombies" trying to ca
 
 
 ## MVP (DOM - CANVAS)
+
+CANVAS
 One ball moving around all the screen and smaller balls trying to get to the big one. You lose if they catch you. 
 
 
@@ -122,7 +124,20 @@ GameOver(
 
 ## Task
 
-1. Create screen transitions to go from Splash to Game, from game to game over and from Game Over to Splash or Game.
+1. Create screen transitions to go from Splash to Game, from game to game over and from Game Over to Splash or Game. With buttons and TimeOut. Test.
+
+2. Create canvas. Test.
+
+3. Write Player constructor with attributes and methods. Test.
+
+4. Write Player not out the canvas.
+
+5. Write Enemy constructor with attributes and methods. Test. 
+
+6. Make ONE Enemy move to Player position.
+
+7. Write collision Enemy and Player. Loose lives. 
+
 
 
 ## Links
