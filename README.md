@@ -29,6 +29,17 @@ One ball moving around all the screen and smaller balls trying to get to the big
 ### Map and obstacles
 - Build different maps with different obstacles.
 
+### Design
+- CSS & Javascript
+
+### Pause
+- Be able to pause the game
+
+### Lives
+- Balls as lives to gain lives. 
+
+### Input & highscore
+- Names of players + highscore at the gameover screen.
 
 ## Data structure
 ### Game
