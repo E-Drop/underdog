@@ -96,8 +96,8 @@ p {
   border: 1px solid #111;
   text-align: center;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #228DFF, 0 0 50px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF;
+  cursor: pointer;
 }
-
 
 .button-start {
   color: rgb(29, 151, 199);

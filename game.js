@@ -41,21 +41,35 @@ Game.prototype.startGame = function() {
   //   self.gameOver();                    ////
   // }, 10000);
   
- self.hunter = new Player(self.canvasElement, 5);
+ self.player = new Player(self.canvasElement, 5);
+ self.enemy1 = new Enemy(self.canvasElement, 50, 50);
 
  self.handleHeyDown = function (event) {
     if (event.key === 'ArrowUp') {
-      self.hunter.setYDirection(-1);
+      self.player.setYDirection(-1);
     } else if (event.key === 'ArrowDown') {
-      self.hunter.setYDirection(1);
+      self.player.setYDirection(1);
     } else if (event.key === 'ArrowLeft') {
-      self.hunter.setXDirection(-1);
+      self.player.setXDirection(-1);
     } else if (event.key === 'ArrowRight') {
-      self.hunter.setXDirection(1);
+      self.player.setXDirection(1);
+    } 
+  };
+
+  self.handleHeyUp = function (event) {
+    if (event.key === 'ArrowUp') {
+      self.player.setYDirection(0);
+    } else if (event.key === 'ArrowDown') {
+      self.player.setYDirection(0);
+    } else if (event.key === 'ArrowLeft') {
+      self.player.setXDirection(0);
+    } else if (event.key === 'ArrowRight') {
+      self.player.setXDirection(0);
     } 
   };
 
   document.body.addEventListener('keydown', self.handleHeyDown)
+  document.body.addEventListener('keyup', self.handleHeyUp)
 
   self.startLoop();
 };                                      
@@ -67,7 +81,10 @@ Game.prototype.startLoop = function() {
 
   function loop() {
     /// UPDATE ///
-    self.hunter.update();
+    self.player.update();
+    self.enemy1.update();
+
+    self.enemy1.followPlayer(self.player.x, self.player.y)
 
 
     /// CLEAR CANVAS ///
@@ -75,7 +92,8 @@ Game.prototype.startLoop = function() {
 
 
     /// DRAW ///
-    self.hunter.draw();
+    self.player.draw();
+    self.enemy1.draw();
 
     
     window.requestAnimationFrame(loop);
