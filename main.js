@@ -6,9 +6,12 @@ function buildDom(html) {
   return div.children[0];
 }
 
-var splashMain;
 
 function main () {
+  
+  var splashMain;
+  var game;
+
 
 //-----SPLASH------//
 
@@ -19,16 +22,30 @@ function main () {
        <button>Start</button>
      </main>`
    );
- 
-   document.body.appendChild(splashMain);  
-  //  var buttonStart = splashMain.querySelector('button');
+   document.body.appendChild(splashMain); 
 
+    var buttonStart = splashMain.querySelector("button");
+    buttonStart.addEventListener('click', startGame);
   }
+
+  function destroySplash() {
+    splashMain.remove();
+  }
+
 
 //------GAME------//
 
+  function startGame () {
+    destroySplash();
 
+    game = new Game();
+    game.startGame();
+  }
+
+
+//---Inicialize----//
   buildSplash();
+
 } //---End of main---//
 
 window.addEventListener('load', main);
