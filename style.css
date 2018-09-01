@@ -3,6 +3,7 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -11,6 +12,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 h1 {
@@ -113,6 +115,18 @@ p {
 .splash {
   padding-top: 150px;
   text-align: center;
+}
+
+
+.game {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.canvas {
+  flex: 1;
 }
 
 .game-over {
