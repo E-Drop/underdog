@@ -43,6 +43,7 @@ Game.prototype.startGame = function() {
   
  self.player = new Player(self.canvasElement, 5);
  self.enemy1 = new Enemy(self.canvasElement, 50, 50);
+ self.enemy2 = new Enemy(self.canvasElement, 300, 300);
 
  self.handleHeyDown = function (event) {
     if (event.key === 'ArrowUp') {
@@ -83,8 +84,10 @@ Game.prototype.startLoop = function() {
     /// UPDATE ///
     self.player.update();
     self.enemy1.update();
+    self.enemy2.update();
 
     self.enemy1.followPlayer(self.player.x, self.player.y)
+    self.enemy2.followPlayer(self.player.x, self.player.y)
 
 
     /// CLEAR CANVAS ///
@@ -94,6 +97,7 @@ Game.prototype.startLoop = function() {
     /// DRAW ///
     self.player.draw();
     self.enemy1.draw();
+    self.enemy2.draw();
 
     
     window.requestAnimationFrame(loop);
@@ -101,6 +105,8 @@ Game.prototype.startLoop = function() {
   }
   window.requestAnimationFrame(loop);
 };
+
+
 
 Game.prototype.onOver = function(callback) {
   var self = this;
