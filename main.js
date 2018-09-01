@@ -11,6 +11,7 @@ function main () {
   
   var splashMain;
   var game;
+  var gameOverMain;
 
 
 //-----SPLASH------//
@@ -40,10 +41,36 @@ function main () {
 
     game = new Game();
     game.startGame();
+    game.onOver(function () {
+      gameOverTransition();
+    });
+  }
+
+  function destroyGame() {
+    game.destroy();
   }
 
 
-//---Inicialize----//
+//----GAME OVER-----//
+
+  function gameOverTransition() {
+    destroyGame();
+    buildGameOver();
+  }
+
+  function buildGameOver() {
+
+    gameOverMain = buildDom(
+      `<main>
+        <h1>Game Over</h1>
+        <button>Restart</button>
+      </main>`
+    );
+    document.body.appendChild(gameOverMain);
+  }
+
+
+//----Inicialize----//
   buildSplash();
 
 } //---End of main---//
