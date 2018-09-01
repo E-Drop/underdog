@@ -10,7 +10,7 @@ Game.prototype.startGame = function() {
   var self = this;
   self.gameMain = buildDom(
     `<main>
-      <header>
+      <header class="game-header container">
         <div class="lives">
           <span class="label">Lives:</span>
           <span class="value"></span>

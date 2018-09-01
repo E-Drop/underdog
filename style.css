@@ -1,0 +1,129 @@
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ---- typography ---- */
+
+body {
+  color: white;
+  /* font-family: 'Orbitron', sans-serif; */
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  line-height: 147%;
+  background: #111;
+}
+
+h1 {
+  margin-bottom: 60px;
+  color: rgb(29, 151, 199);
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  font-size: 100px;
+}
+
+h2 {}
+
+h3 {}
+
+p {
+  margin: 0;
+}
+
+
+
+/* ---- layout ---- */
+
+#site-header {
+  padding: 30px 0;
+  color: white;
+  background: #111;
+}
+
+#site-footer {
+  color: white;
+  padding: 60px 0;
+  background: #111;
+}
+
+#site-main {
+  margin-bottom: 60px;
+}
+
+.container {
+  margin: 0 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 728px;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+/* ---- components ---- */
+
+.button {
+  width: 25%;
+  background-color: #111;
+  color: rgb(29, 151, 199);
+  font-family: 'VT323', monospace;
+  border: 1px solid #111;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #228DFF, 0 0 50px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF;
+}
+
+
+.button-start {
+  color: rgb(29, 151, 199);
+  font-size: 40px;
+}
+
+.button-restart {
+  color: rgb(29, 151, 199);
+  text-shadow: 0 0 2px #fff, 0 0 8px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 30px #228DFF, 0 0 40px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF;
+  font-size: 30px;
+}
+
+/* ---- section ---- */
+
+.splash {
+  padding-top: 150px;
+  text-align: center;
+}
+
+.game-over {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.game-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 10px;
+  font-size: 25px;
+}
