@@ -114,11 +114,33 @@ p {
   font-size: 30px;
 }
 
+.button-menu {
+  color: rgb(29, 151, 199);
+  text-shadow: 0 0 2px #fff, 0 0 8px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 30px #228DFF, 0 0 40px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF;
+  font-size: 30px;
+}
+
 /* ---- section ---- */
 
 .splash {
   padding-top: 150px;
   text-align: center;
+}
+.input {
+  margin-bottom: 20px;
+}
+.input label{
+  font-size: 25px;
+}
+
+input[type="text"]
+{
+  font-family: 'VT323', monospace;
+  text-align: center;
+}
+input {
+  padding: 5px;
+  font-size: 25px;
 }
 
 

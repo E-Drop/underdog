@@ -3,7 +3,9 @@
 function Game() {
   var self = this;
   self.gameIsOver = false;
-
+  self.score = 0;
+  self.username = idName;
+  self.isPause = false;
 }
 
 Game.prototype.startGame = function() {
@@ -14,6 +16,9 @@ Game.prototype.startGame = function() {
         <div class="lives">
           <span class="label">Lives:</span>
           <span class="value"></span>
+        </div>
+        <div>
+          <p></p>
         </div>
         <div class="score">
           <span class="label">Score:</span>
@@ -26,7 +31,9 @@ Game.prototype.startGame = function() {
     </main>`
   );
   document.body.appendChild(self.gameMain);
-
+  if (self.username !== undefined) {
+    self.gameMain.querySelector('p').innerText = self.username;
+  }
   self.canvasParentElement = self.gameMain.querySelector('.canvas');
   self.canvasElement = self.gameMain.querySelector('canvas');
 
@@ -82,6 +89,17 @@ Game.prototype.startGame = function() {
 Game.prototype.startLoop = function() {
   var self = this;
   var ctx = self.canvasElement.getContext('2d');
+
+
+  // fix pause
+  document.body.addEventListener('keyup', function(){
+    if (event.key === ' ') {
+      self.isPause = !self.isPause;
+      if (!self.isPause) {
+        loop();
+      }
+    }
+  });
   
 
   function loop() {
@@ -113,8 +131,8 @@ Game.prototype.startLoop = function() {
             var x = self.enemies[j].x - self.enemies[i].x;
             var y = self.enemies[j].y - self.enemies[i].y;
             if (a > Math.sqrt( (x * x) + (y * y) )) {
-              self.enemies[j].xVelocity = -self.enemies[i].xVelocity;
-              self.enemies[j].yVelocity = -self.enemies[i].yVelocity;
+              self.enemies[i].xVelocity = self.enemies[j].xVelocity + 0.5;
+              self.enemies[i].yVelocity = self.enemies[j].yVelocity + 0.5;
             }
           }
         }
@@ -138,7 +156,6 @@ Game.prototype.startLoop = function() {
 
     
     window.requestAnimationFrame(loop);
-    
   }
   window.requestAnimationFrame(loop);
 };

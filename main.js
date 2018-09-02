@@ -1,5 +1,7 @@
 'use strict';
 
+var idName;
+
 function buildDom(html) {
   var div = document.createElement('div');
   div.innerHTML = html;
@@ -17,15 +19,31 @@ function main () {
 //-----SPLASH------//
 
   function buildSplash() {
+
+    destroyGameOver();
+
     splashMain = buildDom(
      `<main class="container">
         <div class="splash">
         <h1>UNDERDOG</h1>
+        <div class="input">
+          <label>Name:</label>
+          <input type="text"></input>
+        </div>
         <button class="button button-start">INSERT COIN</button>
        </div>
      </main>`
    );
-   document.body.appendChild(splashMain); 
+    document.body.appendChild(splashMain); 
+
+    var input = document.querySelector('input');
+    input.addEventListener('keyup', function() {
+      idName = username(input);
+    });
+
+    function username (item) {
+      return item.value;
+    }
 
     var buttonStart = splashMain.querySelector("button");
     buttonStart.addEventListener('click', startGame);
@@ -45,7 +63,7 @@ function main () {
     game = new Game();
     game.startGame();
     game.onOver(function () {
-      gameOverTransition();
+      gameOverTransition(game.score);
     });
   }
 
@@ -56,25 +74,35 @@ function main () {
 
 //----GAME OVER-----//
 
-  function gameOverTransition() {
+  function gameOverTransition(score) {
     destroyGame();
-    buildGameOver();
+    buildGameOver(score);
   }
 
-  function buildGameOver() {
+  function buildGameOver(score) {
 
     gameOverMain = buildDom(
       `<main class="container">
         <div class="game-over">
           <h1>Game Over</h1>
+          <p><span></span><p>
           <button class="button button-restart">Restart</button>
+          <button class="button button-menu">Menu</button>
         </div>
       </main>`
     );
     document.body.appendChild(gameOverMain);
 
-    var buttonRestart = gameOverMain.querySelector('button');
+    var span = gameOverMain.querySelector('span');
+    if (idName !== undefined) {
+      span.innerText = idName + ' your score is: ' + score + ' ';
+    }
+
+    var buttonRestart = gameOverMain.querySelector('button.button-restart');
     buttonRestart.addEventListener('click', startGame);
+
+    var buttonRestart = gameOverMain.querySelector('button.button-menu');
+    buttonRestart.addEventListener('click', buildSplash);
   }
 
   function destroyGameOver() {
