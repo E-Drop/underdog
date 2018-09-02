@@ -42,8 +42,7 @@ Game.prototype.startGame = function() {
   // }, 10000);
   
  self.player = new Player(self.canvasElement, 5);
- self.enemy1 = new Enemy(self.canvasElement, 50, 50);
- self.enemy2 = new Enemy(self.canvasElement, 300, 300);
+
 
  self.handleHeyDown = function (event) {
     if (event.key === 'ArrowUp') {
@@ -72,6 +71,8 @@ Game.prototype.startGame = function() {
   document.body.addEventListener('keydown', self.handleHeyDown)
   document.body.addEventListener('keyup', self.handleHeyUp)
 
+  self.enemies = [];
+
   self.startLoop();
 };                                      
 
@@ -81,13 +82,23 @@ Game.prototype.startLoop = function() {
   
 
   function loop() {
+    if (self.enemies.length < 20){
+      if (Math.random() > 0.99){
+        var y = self.canvasElement.height * Math.random();
+        var x = self.canvasElement.width * Math.random();
+        self.enemies.push(new Enemy(self.canvasElement, x , y));
+      }
+    } 
+
     /// UPDATE ///
     self.player.update();
-    self.enemy1.update();
-    self.enemy2.update();
+    self.enemies.forEach(function(item) {
+      item.update();
+    });
 
-    self.enemy1.followPlayer(self.player.x, self.player.y)
-    self.enemy2.followPlayer(self.player.x, self.player.y)
+
+    // self.enemy1.followPlayer(self.player.x, self.player.y)
+    // self.enemy2.followPlayer(self.player.x, self.player.y)
 
 
     /// CLEAR CANVAS ///
@@ -96,8 +107,9 @@ Game.prototype.startLoop = function() {
 
     /// DRAW ///
     self.player.draw();
-    self.enemy1.draw();
-    self.enemy2.draw();
+    self.enemies.forEach(function(item) {
+      item.draw()
+    });
 
     
     window.requestAnimationFrame(loop);

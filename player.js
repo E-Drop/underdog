@@ -31,17 +31,17 @@ Player.prototype.update = function () {
   self.x = self.x + self.xVelocity * self.speed;
   self.y = self.y + self.yVelocity * self.speed;
 
-  if (self.y < 0 + self.radius || self.x < 0 + self.radius) {
-    self.xVelocity = 0.5;
-    self.yVelocity = 0.5;
+  if (self.x < 0 + self.radius) {
+    self.xVelocity = 0.3;
+  }
+  if (self.y < 0 + self.radius) {
+    self.yVelocity = 0.3;
   }
   if (self.y > self.canvasElement.height - self.radius) {
-    self.xVelocity = -0.5;
-    self.yVelocity = -0.5;
+    self.yVelocity = -0.3;
   }
   if (self.x > self.canvasElement.width - self.radius) {
-    self.xVelocity = -0.5;
-    self.yVelocity = -0.5;
+    self.xVelocity = -0.3;
   }
 };
 
@@ -52,7 +52,7 @@ Player.prototype.draw = function () {
   var xPosition = self.x - self.radius / 2;
   var yPosition = self.y - self.radius / 2;
   self.ctx.beginPath();
-  self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2*Math.PI);
+  self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2 * Math.PI);
   self.ctx.fill();
 };
 

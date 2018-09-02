@@ -14,15 +14,15 @@ function Enemy(canvasElement, x, y) {
 } 
 
 
-Enemy.prototype.followPlayer = function (xPlayer, yPlayer) {
-  var self = this;
+// Enemy.prototype.followPlayer = function (xPlayer, yPlayer) {
+//   var self = this;
 
-  self.xVelocity = xPlayer - self.x;
-  self.yVelocity = yPlayer - self.y;
-  self.normalization = Math.sqrt(self.xVelocity ** 2 + self.yVelocity ** 2);
-  self.xVelocity = self.xVelocity / self.normalization
-  self.yVelocity = self.yVelocity / self.normalization
-}
+//   self.xVelocity = xPlayer - self.x;
+//   self.yVelocity = yPlayer - self.y;
+//   self.normalization = Math.sqrt(self.xVelocity ** 2 + self.yVelocity ** 2);
+//   self.xVelocity = self.xVelocity / self.normalization
+//   self.yVelocity = self.yVelocity / self.normalization
+// }
 
 Enemy.prototype.update = function () {
   var self = this;
@@ -34,7 +34,7 @@ Enemy.prototype.update = function () {
 Enemy.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = 'rgb(153, 255, 204)';
+  self.ctx.fillStyle = 'rgb(153, 255, 204)'
   var xPosition = self.x - self.radius / 2;
   var yPosition = self.y - self.radius / 2;
   self.ctx.beginPath();
