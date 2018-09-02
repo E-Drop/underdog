@@ -14,6 +14,24 @@ function Player(canvasElement, lives) {
   self.speed = 3;
 } 
 
+Player.prototype.collided = function () {
+  var self= this;
+  self.lives--;
+}
+
+Player.prototype.collidesWithEnemy = function (enemy) {
+  var self = this;
+
+  var a = self.radius + enemy.radius
+  var x = self.x - enemy.x;
+  var y = self.y - enemy.y;
+
+  if (a > Math.sqrt( (x * x) + (y * y) )) {
+    return true;
+  }
+  
+  return false;
+}
 
 Player.prototype.setYDirection = function (direction) {
   var self = this;

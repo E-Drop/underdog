@@ -22,8 +22,12 @@ h1 {
 
 
 /* ---- typography ---- */
+html {
+  overflow: hidden;
+}
 
 body {
+  overflow: hidden;
   color: white;
   /* font-family: 'Orbitron', sans-serif; */
   font-family: 'VT323', monospace;

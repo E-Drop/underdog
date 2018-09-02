@@ -30,6 +30,9 @@ Game.prototype.startGame = function() {
   self.canvasParentElement = self.gameMain.querySelector('.canvas');
   self.canvasElement = self.gameMain.querySelector('canvas');
 
+  self.livesElement = self.gameMain.querySelector('.lives .value');
+  self.scoreElement = self.gameMain.querySelector('.score .value');
+
   self.width = self.canvasParentElement.offsetWidth;
   self.height = self.canvasParentElement.offsetHeight;
 
@@ -68,8 +71,8 @@ Game.prototype.startGame = function() {
     } 
   };
 
-  document.body.addEventListener('keydown', self.handleHeyDown)
-  document.body.addEventListener('keyup', self.handleHeyUp)
+  document.body.addEventListener('keydown', self.handleHeyDown);
+  document.body.addEventListener('keyup', self.handleHeyUp);
 
   self.enemies = [];
 
@@ -82,11 +85,11 @@ Game.prototype.startLoop = function() {
   
 
   function loop() {
-    if (self.enemies.length < 20){
+    if (self.enemies.length < 40){
       if (Math.random() > 0.99){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.enemies.push(new Enemy(self.canvasElement, x , y));
+        self.enemies.push(new Enemy1(self.canvasElement, x , y));
       }
     } 
 
@@ -96,10 +99,34 @@ Game.prototype.startLoop = function() {
       item.update();
     });
 
+    self.enemies.forEach(function(item) {
+      item.followPlayer(self.player.x, self.player.y);
+    });
 
-    // self.enemy1.followPlayer(self.player.x, self.player.y)
-    // self.enemy2.followPlayer(self.player.x, self.player.y)
+    self.checkIfEnemiesCollidePlayer();
+    self.checkIfEnemiesCollideEnemies = function (){
+      var self = this;
+      for (var i = 0; i < self.enemies.length; i++){
+        for (var j = 0; j < self.enemies.length; j++){
+          if (j !== i){
+            var a = self.enemies[j].radius + self.enemies[i].radius;
+            var x = self.enemies[j].x - self.enemies[i].x;
+            var y = self.enemies[j].y - self.enemies[i].y;
+            if (a > Math.sqrt( (x * x) + (y * y) )) {
+              self.enemies[j].xVelocity = -self.enemies[j].xVelocity;
+              self.enemies[j].yVelocity = -self.enemies[j].yVelocity;
+              self.enemies[i].xVelcity = -self.enemies[i].xVelcity;
+              self.enemies[i].yVelcity = -self.enemies[i].yVelcity;
+            }
+          }
+        }
+      }
+    }
 
+    self.checkIfEnemiesCollideEnemies();
+
+    self.livesElement.innerText = self.player.lives;
+    self.scoreElement.innerText = self.score;
 
     /// CLEAR CANVAS ///
     ctx.clearRect(0, 0, self.width, self.height);
@@ -118,7 +145,19 @@ Game.prototype.startLoop = function() {
   window.requestAnimationFrame(loop);
 };
 
+Game.prototype.checkIfEnemiesCollidePlayer = function () {
+  var self = this;
 
+  self.enemies.forEach( function(item, index) {
+    if (self.player.collidesWithEnemy(item)) {
+      self.player.collided();
+      self.enemies.splice(index, 1);
+      if (!self.player.lives) {
+        self.gameOver();
+      }
+    }
+  });
+};
 
 Game.prototype.onOver = function(callback) {
   var self = this;
