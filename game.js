@@ -113,15 +113,13 @@ Game.prototype.startLoop = function() {
             var x = self.enemies[j].x - self.enemies[i].x;
             var y = self.enemies[j].y - self.enemies[i].y;
             if (a > Math.sqrt( (x * x) + (y * y) )) {
-              self.enemies[j].xVelocity = -self.enemies[j].xVelocity;
-              self.enemies[j].yVelocity = -self.enemies[j].yVelocity;
-              self.enemies[i].xVelcity = -self.enemies[i].xVelcity;
-              self.enemies[i].yVelcity = -self.enemies[i].yVelcity;
+              self.enemies[j].xVelocity = -self.enemies[i].xVelocity;
+              self.enemies[j].yVelocity = -self.enemies[i].yVelocity;
             }
           }
         }
       }
-    }
+    };
 
     self.checkIfEnemiesCollideEnemies();
 
