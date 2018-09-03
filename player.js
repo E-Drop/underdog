@@ -67,8 +67,8 @@ Player.prototype.draw = function () {
   var self = this;
 
   self.ctx.fillStyle = ('yellow');
-  var xPosition = self.x - self.radius / 2;
-  var yPosition = self.y - self.radius / 2;
+  var xPosition = self.x - self.radius;
+  var yPosition = self.y - self.radius;
   self.ctx.beginPath();
   self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2 * Math.PI);
   self.ctx.fill();

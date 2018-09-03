@@ -137,6 +137,8 @@ input[type="text"]
 {
   font-family: 'VT323', monospace;
   text-align: center;
+  background: #111;
+  color: white;
 }
 input {
   padding: 5px;

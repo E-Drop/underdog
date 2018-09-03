@@ -30,6 +30,7 @@ Game.prototype.startGame = function() {
       </div>
     </main>`
   );
+
   document.body.appendChild(self.gameMain);
   if (self.username !== undefined) {
     self.gameMain.querySelector('p').innerText = self.username;
@@ -45,13 +46,9 @@ Game.prototype.startGame = function() {
 
   self.canvasElement.setAttribute('width', self.width);
   self.canvasElement.setAttribute('height', self.height);
-
-/////////////// Temporary //////////////////
-  // self.idTime = setTimeout(function () {////
-  //   self.gameOver();                    ////
-  // }, 10000);
   
  self.player = new Player(self.canvasElement, 5);
+
 
  self.handleHeyDown = function (event) {
     if (event.key === 'ArrowUp') {
@@ -81,6 +78,7 @@ Game.prototype.startGame = function() {
   document.body.addEventListener('keyup', self.handleHeyUp);
 
   self.enemies = [];
+  self.shoots = [];
 
   self.startLoop();
 };                                      
@@ -99,6 +97,29 @@ Game.prototype.startLoop = function() {
     }
   });
 
+  document.body.addEventListener('keyup', function(){
+    if (event.keyCode === 87) {
+      self.shoot = new Shoot(self.canvasElement, self.player);
+      self.shoot.setYDirection(-1)
+      self.shoots.push(self.shoot)
+    }
+    if (event.keyCode === 65) {
+      self.shoot = new Shoot(self.canvasElement, self.player);
+      self.shoot.setXDirection(-1)
+      self.shoots.push(self.shoot)
+    }
+    if (event.keyCode === 83) {
+      self.shoot = new Shoot(self.canvasElement, self.player);
+      self.shoot.setYDirection(1)
+      self.shoots.push(self.shoot)
+    }
+    if (event.keyCode === 68) {
+      self.shoot = new Shoot(self.canvasElement, self.player);
+      self.shoot.setXDirection(1)
+      self.shoots.push(self.shoot)
+    }
+  });
+
   function loop() {
     if (self.enemies.length < 40){
       if (Math.random() > 0.99){
@@ -108,8 +129,12 @@ Game.prototype.startLoop = function() {
       }
     } 
 
+
     /// UPDATE ///
     self.player.update();
+    self.shoots.forEach(function(item) {
+      item.update();
+    });
     self.enemies.forEach(function(item) {
       item.update();
     });
@@ -119,24 +144,7 @@ Game.prototype.startLoop = function() {
     });
 
     self.checkIfEnemiesCollidePlayer();
-
-    self.checkIfEnemiesCollideEnemies = function (){
-      var self = this;
-      for (var i = 0; i < self.enemies.length; i++){
-        for (var j = 0; j < self.enemies.length; j++){
-          if (j !== i){
-            var a = self.enemies[j].radius + self.enemies[i].radius;
-            var x = self.enemies[j].x - self.enemies[i].x;
-            var y = self.enemies[j].y - self.enemies[i].y;
-            if (a > Math.sqrt( (x * x) + (y * y) )) {
-              self.enemies[i].xVelocity = self.enemies[j].xVelocity + 0.5;
-              self.enemies[i].yVelocity = self.enemies[j].yVelocity + 0.5;
-            }
-          }
-        }
-      }
-    };
-
+    self.checkIfShootsCollidesEnemies();
     self.checkIfEnemiesCollideEnemies();
 
     self.livesElement.innerText = self.player.lives;
@@ -147,6 +155,9 @@ Game.prototype.startLoop = function() {
 
 
     /// DRAW ///
+    self.shoots.forEach(function(item) {
+      item.draw()
+    });
     self.player.draw();
     self.enemies.forEach(function(item) {
       item.draw()
@@ -157,6 +168,42 @@ Game.prototype.startLoop = function() {
     }
   }
   window.requestAnimationFrame(loop);
+};
+
+
+Game.prototype.checkIfEnemiesCollideEnemies = function (){
+  var self = this;
+  for (var i = 0; i < self.enemies.length; i++){
+    for (var j = 0; j < self.enemies.length; j++){
+      if (j !== i){
+        var a = self.enemies[j].radius + self.enemies[i].radius;
+        var x = self.enemies[j].x - self.enemies[i].x;
+        var y = self.enemies[j].y - self.enemies[i].y;
+        if (a > Math.sqrt( (x * x) + (y * y) )) {
+          self.enemies[i].xVelocity = self.enemies[j].xVelocity + 0.8;
+          self.enemies[i].yVelocity = self.enemies[j].yVelocity + 0.8;
+        }
+      }
+    }
+  }
+};
+
+
+Game.prototype.checkIfShootsCollidesEnemies = function (){
+  var self = this;
+  for (var i = 0; i < self.shoots.length; i++){
+    for (var j = 0; j < self.enemies.length; j++){
+      if (j !== i){
+        var a = self.enemies[j].radius + self.shoots[i].radius;
+        var x = self.enemies[j].x - self.shoots[i].x;
+        var y = self.enemies[j].y - self.shoots[i].y;
+        if (a > Math.sqrt( (x * x) + (y * y) )) {
+          self.enemies.splice(j, 1);
+          self.score += 1;
+        }
+      }
+    }
+  }
 };
 
 Game.prototype.checkIfEnemiesCollidePlayer = function () {
