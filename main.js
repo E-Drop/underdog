@@ -85,13 +85,35 @@ function main () {
       `<main class="container">
         <div class="game-over">
           <h1>Game Over</h1>
-          <p><span></span><p>
+          <p><span class="score"></span><p>
           <button class="button button-restart">Restart</button>
           <button class="button button-menu">Menu</button>
         </div>
       </main>`
     );
     document.body.appendChild(gameOverMain);
+
+    // <h3>HIGHSCORE</h3>
+    // <ul>
+    //   <li class="score1"></li>
+    //   <li class="score2"></li>
+    //   <li class="score3"></li>
+    //   <li class="score4"></li>
+    //   <li class="score5"></li>
+    // <ul>
+
+    // var score1 = gameOverMain.querySelector('.score1');
+    // var score2 = gameOverMain.querySelector('.score2');
+    // var score3 = gameOverMain.querySelector('.score3');
+    // var score4 = gameOverMain.querySelector('.score4');
+    // var score5 = gameOverMain.querySelector('.score5');
+    // var listHighscore = JSON.parse(localStorage.getItem('scores'));
+
+    // score1.innerText = listHighscore[0].username + '  ' + listHighscore[0].score;
+    // score2.innerText = listHighscore[1].username + '  ' + ;
+    // score3.innerText = listHighscore[2].username;
+    // score4.innerText = listHighscore[3].username;
+    // score5.innerText = listHighscore[4].username;
 
     var span = gameOverMain.querySelector('span');
     if (idName !== undefined) {
@@ -103,6 +125,12 @@ function main () {
 
     var buttonRestart = gameOverMain.querySelector('button.button-menu');
     buttonRestart.addEventListener('click', buildSplash);
+
+    var scoreObject = {
+      username: idName,
+      score: score
+    }
+    saveScore(scoreObject)
   }
 
   function destroyGameOver() {
@@ -111,6 +139,23 @@ function main () {
     }
   }
 
+  function saveScore (scoreObject) {
+    if (!localStorage.getItem('scores')) {
+      var listScore = []
+      var listPlayers = []
+      listScore.push(scoreObject);
+      localStorage.setItem('scores', JSON.stringify(listScore));
+    } else {
+      var listScore = JSON.parse(localStorage.getItem('scores'));
+      listScore.push(scoreObject);
+      localStorage.setItem('scores', JSON.stringify(listScore));
+    }
+
+    listPlayers = JSON.parse(localStorage.getItem('scores'));
+    listPlayers.sort(function (a, b){
+      return b.score - a.score;
+    })
+  }
 
 //----Inicialize----//
   buildSplash();

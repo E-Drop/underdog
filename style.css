@@ -179,6 +179,14 @@ canvas {
 }
 
 .game-over {
-  padding-top: 100px;
+  padding-top: 200px;
   text-align: center;
+}
+
+.game-over p{
+  margin-bottom: 50px;
+}
+
+.game-over .score{
+  font-size: 25px;
 }
