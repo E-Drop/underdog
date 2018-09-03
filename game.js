@@ -122,7 +122,7 @@ Game.prototype.startLoop = function() {
 
   function loop() {
     if (self.enemies.length < 40){
-      if (Math.random() > 0.99){
+      if (Math.random() > 0.97){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
         self.enemies.push(new Enemy(self.canvasElement, x , y));

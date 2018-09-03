@@ -47,6 +47,14 @@ function main () {
 
     var buttonStart = splashMain.querySelector("button");
     buttonStart.addEventListener('click', startGame);
+
+    addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        startGame();
+      }
+    });
+
+
   }
 
   function destroySplash() {
@@ -86,6 +94,28 @@ function main () {
         <div class="game-over">
           <h1>Game Over</h1>
           <p><span class="score"></span><p>
+          <ul>
+            <li class="list-item1">
+              <p class="name0"></pclas>
+              <p class="score0"></p>
+            </li>
+            <li class="list-item2">
+              <p class="name1"></p>
+              <p class="score1"></p>
+            </li>
+            <li class="list-item3">
+              <p class="name2"></p>
+              <p class="score2"></p>
+            </li>
+            <li class="list-item4">
+              <p class="name3"></p>
+              <p class="score3"></p>
+            </li>
+            <li class="list-item5">
+              <p class="name4"></p>
+              <p class="score4"></p>
+            </li>
+          </ul>
           <button class="button button-restart">Restart</button>
           <button class="button button-menu">Menu</button>
         </div>
@@ -93,27 +123,17 @@ function main () {
     );
     document.body.appendChild(gameOverMain);
 
-    // <h3>HIGHSCORE</h3>
-    // <ul>
-    //   <li class="score1"></li>
-    //   <li class="score2"></li>
-    //   <li class="score3"></li>
-    //   <li class="score4"></li>
-    //   <li class="score5"></li>
-    // <ul>
+    var scoreObject = {
+      username: idName,
+      score: score
+    }
 
-    // var score1 = gameOverMain.querySelector('.score1');
-    // var score2 = gameOverMain.querySelector('.score2');
-    // var score3 = gameOverMain.querySelector('.score3');
-    // var score4 = gameOverMain.querySelector('.score4');
-    // var score5 = gameOverMain.querySelector('.score5');
-    // var listHighscore = JSON.parse(localStorage.getItem('scores'));
+    saveScore(scoreObject)
+    var listHighscore = JSON.parse(localStorage.getItem('scores'));
 
-    // score1.innerText = listHighscore[0].username + '  ' + listHighscore[0].score;
-    // score2.innerText = listHighscore[1].username + '  ' + ;
-    // score3.innerText = listHighscore[2].username;
-    // score4.innerText = listHighscore[3].username;
-    // score5.innerText = listHighscore[4].username;
+    if (listHighscore) {
+      displayScore(listHighscore);
+    }
 
     var span = gameOverMain.querySelector('span');
     if (idName !== undefined) {
@@ -126,11 +146,6 @@ function main () {
     var buttonRestart = gameOverMain.querySelector('button.button-menu');
     buttonRestart.addEventListener('click', buildSplash);
 
-    var scoreObject = {
-      username: idName,
-      score: score
-    }
-    saveScore(scoreObject)
   }
 
   function destroyGameOver() {
@@ -139,22 +154,38 @@ function main () {
     }
   }
 
-  function saveScore (scoreObject) {
-    if (!localStorage.getItem('scores')) {
-      var listScore = []
-      var listPlayers = []
-      listScore.push(scoreObject);
-      localStorage.setItem('scores', JSON.stringify(listScore));
-    } else {
-      var listScore = JSON.parse(localStorage.getItem('scores'));
-      listScore.push(scoreObject);
-      localStorage.setItem('scores', JSON.stringify(listScore));
+  function displayScore(scores) {
+    var numberScores = 5;
+    if (scores.length < numberScores) {
+      numberScores = scores.length;
     }
 
-    listPlayers = JSON.parse(localStorage.getItem('scores'));
-    listPlayers.sort(function (a, b){
-      return b.score - a.score;
-    })
+    for (var i = 0; i < numberScores; i++){
+      var name = gameOverMain.querySelector('.name' + i)
+      name.innerText = scores[i].username;
+
+      var score = gameOverMain.querySelector('.score' + i)
+      score.innerText = scores[i].score;
+    }
+  }
+
+  function saveScore (scoreObject) {
+    var scoreList = [];
+    if (!localStorage.getItem('scores')) {
+      scoreList.push(scoreObject);
+      scoreList.sort(function (a, b) {
+        return b.score - a.score;
+      });
+      localStorage.setItem('scores', JSON.stringify(scoreList));
+    } else {
+      var scoreList = JSON.parse(localStorage.getItem('scores'));
+      scoreList.push(scoreObject);
+      scoreList.sort(function(a, b){
+        return b.score - a.score;
+      })
+      localStorage.setItem('scores', JSON.stringify(scoreList));
+    }
+    JSON.parse(localStorage.getItem('scores'));
   }
 
 //----Inicialize----//
