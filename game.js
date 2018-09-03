@@ -53,7 +53,6 @@ Game.prototype.startGame = function() {
   
  self.player = new Player(self.canvasElement, 5);
 
-
  self.handleHeyDown = function (event) {
     if (event.key === 'ArrowUp') {
       self.player.setYDirection(-1);
@@ -90,7 +89,6 @@ Game.prototype.startLoop = function() {
   var self = this;
   var ctx = self.canvasElement.getContext('2d');
 
-
   // fix pause
   document.body.addEventListener('keyup', function(){
     if (event.key === ' ') {
@@ -100,14 +98,13 @@ Game.prototype.startLoop = function() {
       }
     }
   });
-  
 
   function loop() {
     if (self.enemies.length < 40){
       if (Math.random() > 0.99){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.enemies.push(new Enemy1(self.canvasElement, x , y));
+        self.enemies.push(new Enemy(self.canvasElement, x , y));
       }
     } 
 
@@ -122,6 +119,7 @@ Game.prototype.startLoop = function() {
     });
 
     self.checkIfEnemiesCollidePlayer();
+
     self.checkIfEnemiesCollideEnemies = function (){
       var self = this;
       for (var i = 0; i < self.enemies.length; i++){
@@ -154,8 +152,9 @@ Game.prototype.startLoop = function() {
       item.draw()
     });
 
-    
-    window.requestAnimationFrame(loop);
+    if (!self.gameIsOver && !self.isPause) {
+      window.requestAnimationFrame(loop);
+    }
   }
   window.requestAnimationFrame(loop);
 };

@@ -1,6 +1,6 @@
 'user strict';
 
-function Enemy1(canvasElement, x, y) {
+function Enemy(canvasElement, x, y) {
   var self = this;
 
   self.canvasElement = canvasElement;
@@ -13,22 +13,8 @@ function Enemy1(canvasElement, x, y) {
   self.speed = 2;
 } 
 
-// Enemy1.prototype.collidesWith = function (enemy) {
-//   var self = this;
 
-//   var a = self.radius + enemy.radius
-//   var x = self.x - enemy.x;
-//   var y = self.y - enemy.y;
-
-//   if (a > Math.sqrt( (x * x) + (y * y) )) {
-//     return true;
-//   }
-  
-//   return false;
-// }
-
-
-Enemy1.prototype.followPlayer = function (xPlayer, yPlayer) {
+Enemy.prototype.followPlayer = function (xPlayer, yPlayer) {
   var self = this;
 
   self.xVelocity = xPlayer - self.x;
@@ -38,14 +24,14 @@ Enemy1.prototype.followPlayer = function (xPlayer, yPlayer) {
   self.yVelocity = self.yVelocity / self.normalization
 }
 
-Enemy1.prototype.update = function () {
+Enemy.prototype.update = function () {
   var self = this;
 
   self.x = self.x + self.xVelocity * self.speed;
   self.y = self.y + self.yVelocity * self.speed;
 };
 
-Enemy1.prototype.draw = function () {
+Enemy.prototype.draw = function () {
   var self = this;
 
   self.ctx.fillStyle = 'rgb(153, 255, 204)'
