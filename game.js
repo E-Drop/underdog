@@ -170,7 +170,8 @@ Game.prototype.startLoop = function() {
     ctx.clearRect(0, 0, self.width, self.height);
     ctx.save();
     ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
-    ctx.drawImage(self.background, 0, 0, self.canvasElement.width, self.canvasElement.height);
+    ctx.drawImage(self.background, -300, -300, self.canvasElement.width+500, self.canvasElement.height+500);
+    ctx.createPattern(self.background, 'repeat');
     // ctx.fillStyle = 'white';
     // ctx.fillRect(0, 0, self.canvasElement.width, self.canvasElement.height);
     

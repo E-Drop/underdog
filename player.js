@@ -40,7 +40,6 @@ Player.prototype.collidesWithEnemy = function (enemy) {
   if (a > Math.sqrt( (x * x) + (y * y) )) {
     return true;
   }
-  
   return false;
 }
 
@@ -76,7 +75,6 @@ Player.prototype.update = function () {
 
 Player.prototype.draw = function () {
   var self = this;
-
 
   var xPosition = self.x - self.radius;
   var yPosition = self.y - self.radius;

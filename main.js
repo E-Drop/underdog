@@ -15,7 +15,7 @@ function main () {
   var gameOverMain;
 
 
-//-----SPLASH------//
+//-----SPLASH------// 
 
   function buildSplash() {
 
