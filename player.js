@@ -77,16 +77,14 @@ Player.prototype.update = function () {
 Player.prototype.draw = function () {
   var self = this;
 
-  // self.ctx.fillStyle = ('yellow');
+
   var xPosition = self.x - self.radius;
   var yPosition = self.y - self.radius;
   self.ctx.beginPath();
-  // self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2 * Math.PI);
-  // self.ctx.fill();
   self.ctx.drawImage(self.imageUp, xPosition, yPosition, 25, 25);
-  if (self.yVelocity > 1) {
+  if (self.yVelocity > 0) {
     self.ctx.drawImage(self.imageDown, xPosition, yPosition, 25, 25);
-  } else if (self.xVelocity > 1){
+  } else if (self.xVelocity > 0){
     self.ctx.drawImage(self.imageRight, xPosition, yPosition, 25, 25);
   } else if (self.xVelocity < 0) {
     self.ctx.drawImage(self.imageLeft, xPosition, yPosition, 25, 25);

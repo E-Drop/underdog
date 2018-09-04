@@ -89,7 +89,6 @@ Game.prototype.startGame = function() {
 Game.prototype.startLoop = function() {
   var self = this;
   var ctx = self.canvasElement.getContext('2d');
-  
 
   // fix pause
   document.body.addEventListener('keyup', function(){
@@ -125,7 +124,8 @@ Game.prototype.startLoop = function() {
   });
 
   function loop() {
-    ctx.drawImage(self.background, 0, 0, self.width, self.height);
+    // ctx.drawImage(self.background, 0, 0, self.width, self.height);
+    
     if (self.enemies.length < 40){
       if (Math.random() > 0.97){
         var y = self.canvasElement.height * Math.random();
@@ -141,6 +141,7 @@ Game.prototype.startLoop = function() {
         self.trees.push(new Tree(self.canvasElement, x , y));
       }
     } 
+
 
     /// UPDATE ///
     self.player.update();
@@ -169,7 +170,8 @@ Game.prototype.startLoop = function() {
     ctx.clearRect(0, 0, self.width, self.height);
     ctx.save();
     ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
-    
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, self.canvasElement.width, self.canvasElement.height);
     
     /// DRAW ///
     self.shoots.forEach(function(item) {

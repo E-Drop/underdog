@@ -34,7 +34,7 @@ Enemy.prototype.update = function () {
 Enemy.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = 'rgb(153, 255, 204)'
+  self.ctx.fillStyle = 'black'
   var xPosition = self.x - self.radius / 2;
   var yPosition = self.y - self.radius / 2;
   self.ctx.beginPath();
