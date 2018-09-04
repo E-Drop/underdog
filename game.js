@@ -6,6 +6,8 @@ function Game() {
   self.score = 0;
   self.username = idName;
   self.isPause = false;
+  self.background = new Image();
+  self.background.src = 'Images/background.png';
 }
 
 Game.prototype.startGame = function() {
@@ -87,6 +89,7 @@ Game.prototype.startGame = function() {
 Game.prototype.startLoop = function() {
   var self = this;
   var ctx = self.canvasElement.getContext('2d');
+  
 
   // fix pause
   document.body.addEventListener('keyup', function(){
@@ -122,7 +125,7 @@ Game.prototype.startLoop = function() {
   });
 
   function loop() {
-    
+    ctx.drawImage(self.background, 0, 0, self.width, self.height);
     if (self.enemies.length < 40){
       if (Math.random() > 0.97){
         var y = self.canvasElement.height * Math.random();
@@ -164,8 +167,6 @@ Game.prototype.startLoop = function() {
 
     /// CLEAR CANVAS ///
     ctx.clearRect(0, 0, self.width, self.height);
-    console.log(self.width/2-self.player.x)
-    console.log(self.height/2-self.player.y)
     ctx.save();
     ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
     

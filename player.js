@@ -12,6 +12,17 @@ function Player(canvasElement, lives) {
   self.y = canvasElement.height / 2;
   self.ctx = self.canvasElement.getContext('2d');
   self.speed = 3;
+  self.imageUp = new Image();
+  self.imageUp.src = 'Images/Playerup.png';
+
+  self.imageDown = new Image();
+  self.imageDown.src = 'Images/Playerdown.png';
+
+  self.imageLeft = new Image();
+  self.imageLeft.src = 'Images/Playerleft.png';
+
+  self.imageRight = new Image();
+  self.imageRight.src = 'Images/Playerright.png';
 } 
 
 Player.prototype.collided = function () {
@@ -66,12 +77,20 @@ Player.prototype.update = function () {
 Player.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = ('yellow');
+  // self.ctx.fillStyle = ('yellow');
   var xPosition = self.x - self.radius;
   var yPosition = self.y - self.radius;
   self.ctx.beginPath();
-  self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2 * Math.PI);
-  self.ctx.fill();
+  // self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2 * Math.PI);
+  // self.ctx.fill();
+  self.ctx.drawImage(self.imageUp, xPosition, yPosition, 25, 25);
+  if (self.yVelocity > 1) {
+    self.ctx.drawImage(self.imageDown, xPosition, yPosition, 25, 25);
+  } else if (self.xVelocity > 1){
+    self.ctx.drawImage(self.imageRight, xPosition, yPosition, 25, 25);
+  } else if (self.xVelocity < 0) {
+    self.ctx.drawImage(self.imageLeft, xPosition, yPosition, 25, 25);
+  }
 };
 
 
