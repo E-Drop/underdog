@@ -180,8 +180,8 @@ Game.prototype.checkIfEnemiesCollideEnemies = function (){
         var x = self.enemies[j].x - self.enemies[i].x;
         var y = self.enemies[j].y - self.enemies[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
-          self.enemies[i].xVelocity = self.enemies[j].xVelocity + 0.8;
-          self.enemies[i].yVelocity = self.enemies[j].yVelocity + 0.8;
+          self.enemies[i].xVelocity = self.enemies[j].xVelocity + 0.7;
+          self.enemies[i].yVelocity = self.enemies[j].yVelocity + 0.7;
         }
       }
     }
@@ -200,6 +200,8 @@ Game.prototype.checkIfShootsCollidesEnemies = function (){
         if (a > Math.sqrt( (x * x) + (y * y) )) {
           self.enemies.splice(j, 1);
           self.score += 1;
+          self.shoots.splice(i, 1);
+          return
         }
       }
     }
