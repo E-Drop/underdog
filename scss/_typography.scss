@@ -9,13 +9,17 @@ body {
   font-family: 'VT323', monospace;
   font-size: 16px;
   line-height: 147%;
-  background: #111;
+  width: 100%;
+  background-image: url('https://geekandsundry.com/wp-content/uploads/2016/03/o6mfyx44msfhyoqbfw3m.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 }
 
 h1 {
   margin-bottom: 60px;
   color: $maincColor;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
   font-size: 100px;
 }
 

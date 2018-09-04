@@ -7,8 +7,8 @@ function Shoot(canvasElement, player) {
   self.xVelocity = 0;
   self.yVelocity = 0;
   self.radius = 5;
-  self.x = player.x - player.radius/2;
-  self.y = player.y - player.radius/2;
+  self.x = player.x ;
+  self.y = player.y ;
   self.ctx = self.canvasElement.getContext('2d');
   self.speed = 5;
 } 
@@ -32,7 +32,7 @@ Shoot.prototype.update = function () {
 Shoot.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = 'red'
+  self.ctx.fillStyle = 'orange'
   var xPosition = self.x - self.radius / 2;
   var yPosition = self.y - self.radius / 2;
   self.ctx.beginPath();

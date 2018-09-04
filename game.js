@@ -134,13 +134,13 @@ Game.prototype.startLoop = function() {
       }
     } 
 
-    if (self.trees.length < 10){
-      if (Math.random() > 0.97){
-        var y = self.canvasElement.height * Math.random();
-        var x = self.canvasElement.width * Math.random();
-        self.trees.push(new Tree(self.canvasElement, x , y));
-      }
-    } 
+    // if (self.trees.length < 10){
+    //   if (Math.random() > 0.97){
+    //     var y = self.canvasElement.height * Math.random();
+    //     var x = self.canvasElement.width * Math.random();
+    //     self.trees.push(new Tree(self.canvasElement, x , y));
+    //   }
+    // } 
 
 
     /// UPDATE ///
@@ -170,8 +170,9 @@ Game.prototype.startLoop = function() {
     ctx.clearRect(0, 0, self.width, self.height);
     ctx.save();
     ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, self.canvasElement.width, self.canvasElement.height);
+    ctx.drawImage(self.background, 0, 0, self.canvasElement.width, self.canvasElement.height);
+    // ctx.fillStyle = 'white';
+    // ctx.fillRect(0, 0, self.canvasElement.width, self.canvasElement.height);
     
     /// DRAW ///
     self.shoots.forEach(function(item) {

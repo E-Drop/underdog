@@ -26,8 +26,7 @@ function main () {
         <div class="splash">
         <h1>UNDERDOG</h1>
         <div class="input">
-          <label>Name:</label>
-          <input type="text"></input>
+          <input type="text" placeholder="Player's Name"></input>
         </div>
         <button class="button button-start">INSERT COIN</button>
        </div>
