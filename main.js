@@ -10,7 +10,6 @@ function buildDom(html) {
 
 
 function main () {
-  
   var splashMain;
   var game;
   var gameOverMain;

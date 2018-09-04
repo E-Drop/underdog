@@ -79,6 +79,7 @@ Game.prototype.startGame = function() {
 
   self.enemies = [];
   self.shoots = [];
+  self.trees = [];
 
   self.startLoop();
 };                                      
@@ -121,6 +122,7 @@ Game.prototype.startLoop = function() {
   });
 
   function loop() {
+    
     if (self.enemies.length < 40){
       if (Math.random() > 0.97){
         var y = self.canvasElement.height * Math.random();
@@ -129,6 +131,13 @@ Game.prototype.startLoop = function() {
       }
     } 
 
+    if (self.trees.length < 10){
+      if (Math.random() > 0.97){
+        var y = self.canvasElement.height * Math.random();
+        var x = self.canvasElement.width * Math.random();
+        self.trees.push(new Tree(self.canvasElement, x , y));
+      }
+    } 
 
     /// UPDATE ///
     self.player.update();
@@ -136,6 +145,9 @@ Game.prototype.startLoop = function() {
       item.update();
     });
     self.enemies.forEach(function(item) {
+      item.update();
+    });
+    self.trees.forEach(function(item) {
       item.update();
     });
 
@@ -152,8 +164,12 @@ Game.prototype.startLoop = function() {
 
     /// CLEAR CANVAS ///
     ctx.clearRect(0, 0, self.width, self.height);
-
-
+    console.log(self.width/2-self.player.x)
+    console.log(self.height/2-self.player.y)
+    ctx.save();
+    ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
+    
+    
     /// DRAW ///
     self.shoots.forEach(function(item) {
       item.draw()
@@ -162,7 +178,10 @@ Game.prototype.startLoop = function() {
     self.enemies.forEach(function(item) {
       item.draw()
     });
-
+    self.trees.forEach(function(item) {
+      item.draw()
+    });
+    ctx.restore();
     if (!self.gameIsOver && !self.isPause) {
       window.requestAnimationFrame(loop);
     }
@@ -199,7 +218,7 @@ Game.prototype.checkIfShootsCollidesEnemies = function (){
         var y = self.enemies[j].y - self.shoots[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
           self.enemies.splice(j, 1);
-          self.score += 1;
+          self.score += 10;
           self.shoots.splice(i, 1);
           return
         }
