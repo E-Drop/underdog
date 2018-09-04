@@ -1,0 +1,29 @@
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+  color: white;
+  /* font-family: 'Orbitron', sans-serif; */
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  line-height: 147%;
+  background: #111;
+}
+
+h1 {
+  margin-bottom: 60px;
+  color: $maincColor;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  font-size: 100px;
+}
+
+h2 {}
+
+h3 {}
+
+p {
+  margin: 0;
+}
+

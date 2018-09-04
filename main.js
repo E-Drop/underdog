@@ -95,24 +95,25 @@ function main () {
           <h1>Game Over</h1>
           <p><span class="score"></span><p>
           <ul>
+            <h2>HIGHSCORE</h2>
             <li class="list-item1">
-              <p class="name0"></pclas>
+              <p class="name0 name"></pclas>
               <p class="score0"></p>
             </li>
             <li class="list-item2">
-              <p class="name1"></p>
+              <p class="name1 name"></p>
               <p class="score1"></p>
             </li>
             <li class="list-item3">
-              <p class="name2"></p>
+              <p class="name2 name"></p>
               <p class="score2"></p>
             </li>
             <li class="list-item4">
-              <p class="name3"></p>
+              <p class="name3 name"></p>
               <p class="score3"></p>
             </li>
             <li class="list-item5">
-              <p class="name4"></p>
+              <p class="name4 name"></p>
               <p class="score4"></p>
             </li>
           </ul>

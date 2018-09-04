@@ -1,0 +1,27 @@
+.button {
+  width: 25%;
+  background-color: #111;
+  color: $maincColor;
+  font-family: 'VT323', monospace;
+  border: 1px solid #111;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #228DFF, 0 0 50px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF;
+  cursor: pointer;
+}
+
+.button-start {
+  color: $maincColor;
+  font-size: 40px;
+}
+
+.button-restart {
+  color: $maincColor;
+  text-shadow: 0 0 2px #fff, 0 0 8px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 30px #228DFF, 0 0 40px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF;
+  font-size: 30px;
+}
+
+.button-menu {
+  color: $maincColor;
+  text-shadow: 0 0 2px #fff, 0 0 8px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 30px #228DFF, 0 0 40px #228DFF, 0 0 60px #228DFF, 0 0 80px #228DFF;
+  font-size: 30px;
+}
