@@ -27,6 +27,7 @@ function Player(canvasElement, lives) {
 
 Player.prototype.collided = function () {
   var self= this;
+  
   self.lives--;
 }
 
@@ -45,11 +46,13 @@ Player.prototype.collidesWithEnemy = function (enemy) {
 
 Player.prototype.setYDirection = function (direction) {
   var self = this;
+
   self.yVelocity = direction;
 };
 
 Player.prototype.setXDirection = function (direction) {
   var self = this;
+
   self.xVelocity = direction;
 };
 

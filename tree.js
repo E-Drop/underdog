@@ -8,8 +8,10 @@ function Tree(canvasElement, x, y) {
   self.x = x;
   self.y = y;
   self.ctx = self.canvasElement.getContext('2d');
-} 
 
+  self.image = new Image();
+  self.image.src = 'Images/trees.png';
+} 
 
 Tree.prototype.update = function () {
   var self = this;
@@ -22,7 +24,5 @@ Tree.prototype.draw = function () {
   self.ctx.fillStyle = 'green'
   var xPosition = self.x - self.radius / 2;
   var yPosition = self.y - self.radius / 2;
-  self.ctx.beginPath();
-  self.ctx.arc(xPosition ,yPosition ,self.radius ,0 ,2*Math.PI);
-  self.ctx.fill();
+  self.ctx.drawImage(self.image, xPosition, yPosition, 80, 80);
 };
