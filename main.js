@@ -13,6 +13,8 @@ function main () {
   var game;
   var gameOverMain;
   var rulesMain;
+  var music;
+ 
 
 
 
@@ -25,18 +27,25 @@ function main () {
     splashMain = buildDom(
      `<main class="container">
         <div class="splash">
-        <h1>UNDERDOG</h1>
-        <div class="input">
-          <input type="text" placeholder="Player's Name"></input>
-        </div>
-        <div class="buttons">
-          <button class="button button-start">INSERT COIN</button>
-          <button class="button button-rules">RULES</button>
-        </div>
+          <h1>UNDERDOG</h1>
+          <div class="input">
+            <input type="text" placeholder="Player's Name"></input>
+          </div>
+          <div class="buttons">
+            <button class="button button-start">INSERT COIN</button>
+            <button class="button button-rules">RULES</button>
+          </div>
+          <div>
+            <audio id='song' autoplay src="./songs/mainMusic.mp3">
+            </audio>
+          </div>
        </div>
      </main>`
    );
-    document.body.appendChild(splashMain); 
+   
+    document.body.appendChild(splashMain);
+    
+    music = document.querySelector('audio');
 
     var input = document.querySelector('input');
     input.addEventListener('keyup', function() {
@@ -85,6 +94,7 @@ function main () {
        </div>
      </main>`
     );
+
     document.body.appendChild(rulesMain); 
 
     var buttonBack = rulesMain.querySelector("button");
@@ -165,6 +175,8 @@ function main () {
       username: idName,
       score: score
     }
+
+    document.body.removeEventListener('keyup', game.shooting);
 
     saveScore(scoreObject)
     var listHighscore = JSON.parse(localStorage.getItem('scores'));

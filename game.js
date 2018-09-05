@@ -33,10 +33,10 @@ Game.prototype.startGame = function() {
         <canvas></canvas>
       </div>
       <div>
-      <audio id='song' preload="auto" loop
-      src="./songs/Stage 1 Castlevania (NES) Music.mp3" type="audio/ogg">
-      </audio>
-      <div>
+        <audio id='song' preload="auto" loop
+        src="./songs/Requiem for a dream [epic].mp3">
+        </audio>
+      </div>
     </main>`
   );
 
@@ -109,35 +109,47 @@ Game.prototype.startLoop = function() {
       }
     }
   });
-
-  document.body.addEventListener('keyup', function(){
-    var snd = new Audio('songs/bullet.mp3'); 
-    snd.play();
+  
+  self.shooting = function(){
     if (event.keyCode === 87) {
+      var snd = new Audio('songs/bullet.mp3'); 
+      snd.play();
+
       self.shoot = new Shoot(self.canvasElement, self.player);
       self.shoot.setYDirection(-1)
       self.shoots.push(self.shoot)
     }
     if (event.keyCode === 65) {
+      var snd = new Audio('songs/bullet.mp3'); 
+      snd.play();
+
       self.shoot = new Shoot(self.canvasElement, self.player);
       self.shoot.setXDirection(-1)
       self.shoots.push(self.shoot)
     }
     if (event.keyCode === 83) {
+      var snd = new Audio('songs/bullet.mp3'); 
+      snd.play();
+
       self.shoot = new Shoot(self.canvasElement, self.player);
       self.shoot.setYDirection(1)
       self.shoots.push(self.shoot)
     }
     if (event.keyCode === 68) {
+      var snd = new Audio('songs/bullet.mp3'); 
+      snd.play();
+
       self.shoot = new Shoot(self.canvasElement, self.player);
       self.shoot.setXDirection(1)
       self.shoots.push(self.shoot)
     }
-  });
+  };
+
+  document.body.addEventListener('keyup',self.shooting) 
 
   function loop() {
   
-    if (self.enemies.length < 40){
+    if (self.enemies.length < 30){
       if (Math.random() > 0.97){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
