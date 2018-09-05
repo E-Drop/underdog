@@ -13,6 +13,7 @@ function main () {
   var splashMain;
   var game;
   var gameOverMain;
+  var rulesMain;
 
 
 //-----SPLASH------// 
@@ -20,6 +21,7 @@ function main () {
   function buildSplash() {
 
     destroyGameOver();
+    destroyRules();
 
     splashMain = buildDom(
      `<main class="container">
@@ -28,7 +30,10 @@ function main () {
         <div class="input">
           <input type="text" placeholder="Player's Name"></input>
         </div>
-        <button class="button button-start">INSERT COIN</button>
+        <div class="buttons">
+          <button class="button button-start">INSERT COIN</button>
+          <button class="button button-rules">RULES</button>
+        </div>
        </div>
      </main>`
    );
@@ -43,8 +48,10 @@ function main () {
       return item.value;
     }
 
-    var buttonStart = splashMain.querySelector("button");
+    var buttonStart = splashMain.querySelector("button.button-start");
     buttonStart.addEventListener('click', startGame);
+    var buttonRules = splashMain.querySelector("button.button-rules");
+    buttonRules.addEventListener('click', buildRules);
 
     addEventListener('keyup', function(event) {
       if (event.key === 'Enter') {
@@ -58,6 +65,37 @@ function main () {
   function destroySplash() {
     splashMain.remove();
   }
+
+  function buildRules() {
+    destroySplash();
+
+    rulesMain = buildDom(
+      `<main class="container rules">
+        <div>
+        <h1>RULES</h1>
+        <div>
+          <ul>
+            <il>Move the Player with arrow up, donw, right and left</il>
+            <il>Shoot with W, D, S and A</il>
+            <il>Kill as many enemies as you can</il>
+          </ul>
+        </div>
+        <button class="button button-menu">BACK</button>
+       </div>
+     </main>`
+    );
+    document.body.appendChild(rulesMain); 
+
+    var buttonBack = rulesMain.querySelector("button");
+    buttonBack.addEventListener('click', buildSplash);
+  }
+
+  function destroyRules() {
+    if(rulesMain) {
+      rulesMain.remove();
+    }
+  }
+
 
 
 //------GAME------//

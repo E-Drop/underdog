@@ -1,6 +1,26 @@
 .splash {
   padding-top: $bigPadding;
   text-align: center;
+  .buttons {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  button {
+     margin: 0 20px;
+  }
+}
+
+.rules {
+  padding-top: $bigPadding;
+  text-align: center;
+  ul {
+    display: flex;
+    justify-content: flex;
+    flex-direction: column; 
+    padding-bottom: 30px;
+    font-size: 25px;
+  }
 }
 
 .input {
