@@ -17,10 +17,24 @@ function main () {
  
 
 
+  function buildMusic() {
+    music = buildDom(
+      `<div>
+        <audio id='song' autoplay src="./songs/mainMusic.mp3">
+        </audio>
+      </div>`
+    )
+    document.body.appendChild(music);
+  }
 
+  function destroyMusic() {
+    if (music) {
+      music.remove();
+    }
+  }
+  buildMusic();
 //-----SPLASH------// 
   function buildSplash() {
-
     destroyGameOver();
     destroyRules();
 
@@ -35,18 +49,13 @@ function main () {
             <button class="button button-start">INSERT COIN</button>
             <button class="button button-rules">RULES</button>
           </div>
-          <div>
-            <audio id='song' autoplay src="./songs/mainMusic.mp3">
-            </audio>
-          </div>
        </div>
      </main>`
    );
    
+
     document.body.appendChild(splashMain);
     
-    music = document.querySelector('audio');
-
     var input = document.querySelector('input');
     input.addEventListener('keyup', function() {
       idName = username(input);
@@ -112,6 +121,7 @@ function main () {
 //------GAME------//
 
   function startGame () {
+    destroyMusic();
     destroySplash();
     destroyGameOver();
 
@@ -195,6 +205,9 @@ function main () {
 
     var buttonRestart = gameOverMain.querySelector('button.button-menu');
     buttonRestart.addEventListener('click', buildSplash);
+    
+    var buttonRestart = gameOverMain.querySelector('button.button-menu');
+    buttonRestart.addEventListener('click', buildMusic);
   }
 
   function destroyGameOver() {
