@@ -7,7 +7,7 @@ function Game() {
   self.username = idName;
   self.isPause = false;
   self.background = new Image();
-  self.background.src = 'Images/background.png';
+  self.background.src = 'Images/background2.jpg';
 }
 
 Game.prototype.startGame = function() {
@@ -198,9 +198,7 @@ Game.prototype.startLoop = function() {
     ctx.clearRect(0, 0, self.width, self.height);
     ctx.save();
     ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
-    ctx.drawImage(self.background, -300, -300, self.canvasElement.width+500, self.canvasElement.height+500);
-    ctx.createPattern(self.background, 'repeat');
-
+    ctx.drawImage(self.background, -400, -400, self.canvasElement.width + 600, self.canvasElement.height + 600);
     
     /// DRAW ///
     self.shoots.forEach(function(item) {
