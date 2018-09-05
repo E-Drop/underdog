@@ -9,6 +9,7 @@ function Game() {
   self.isPause = false;
   self.background = new Image();
   self.background.src = 'Images/background2.jpg';
+  self.mistery = false;
 }
 
 Game.prototype.startGame = function() {
@@ -145,9 +146,17 @@ Game.prototype.startLoop = function() {
     }
   };
 
+  setTimeout( function() {
+    var y = self.canvasElement.height * Math.random();
+    var x = self.canvasElement.width * Math.random();
+    self.box = new Box (self.canvasElement, x, y)
+  }, 10000);
+
   document.body.addEventListener('keyup',self.shooting) 
 
   function loop() {
+
+    
   
     if (self.enemies.length < 30){
       if (Math.random() > 0.97){
@@ -217,7 +226,10 @@ Game.prototype.startLoop = function() {
     self.shoots.forEach(function(item) {
       item.draw()
     });
-
+    if (self.box) {
+      self.box.draw();
+    }
+  
     self.player.draw();
 
     self.enemies.forEach(function(item) {

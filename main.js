@@ -49,6 +49,9 @@ function main () {
             <button class="button button-start">INSERT COIN</button>
             <button class="button button-rules">RULES</button>
           </div>
+          <div class="image">
+            <img src='./Images/Map.jpg'>
+          </div>
        </div>
      </main>`
    );
@@ -145,6 +148,7 @@ function main () {
   }
 
   function buildGameOver(score) {
+    buildMusic();
 
     gameOverMain = buildDom(
       `<main class="container">
@@ -205,9 +209,9 @@ function main () {
 
     var buttonRestart = gameOverMain.querySelector('button.button-menu');
     buttonRestart.addEventListener('click', buildSplash);
-    
-    var buttonRestart = gameOverMain.querySelector('button.button-menu');
-    buttonRestart.addEventListener('click', buildMusic);
+
+    // var buttonRestart = gameOverMain.querySelector('button.button-menu');
+    // buttonRestart.addEventListener('click', buildMusic);
   }
 
   function destroyGameOver() {

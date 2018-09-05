@@ -81,7 +81,6 @@ Player.prototype.draw = function () {
 
   var xPosition = self.x - self.radius;
   var yPosition = self.y - self.radius;
-  self.ctx.beginPath();
   
   self.ctx.drawImage(self.imageUp, xPosition, yPosition, 25, 25);
   if (self.yVelocity > 0) {

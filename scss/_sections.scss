@@ -1,5 +1,5 @@
 .splash {
-  padding-top: $bigPadding;
+  padding-top: 100px;
   text-align: center;
   .buttons {
     display: flex;
@@ -8,6 +8,12 @@
   }
   button {
      margin: 0 20px;
+     margin-bottom: 40px;
+  }
+  img {
+    width: 80%;
+    border: rgba(139, 69, 19, 0.76) solid 2px;
+    border-radius: 30px;
   }
 }
 
