@@ -1,6 +1,6 @@
 'user strict';
 
-function Enemy(canvasElement, x, y ,size, live) {
+function Enemy(canvasElement, x, y ,size, live, speed) {
   var self = this;
 
   self.canvasElement = canvasElement;
@@ -11,7 +11,7 @@ function Enemy(canvasElement, x, y ,size, live) {
   self.x = x;
   self.y = y;
   self.ctx = self.canvasElement.getContext('2d');
-  self.speed = 2;
+  self.speed = speed;
 
   self.imageUp = new Image();
   self.imageUp.src = 'Images/Monsterup.png';

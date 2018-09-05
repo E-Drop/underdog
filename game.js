@@ -136,15 +136,15 @@ Game.prototype.startLoop = function() {
       if (Math.random() > 0.97){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.enemies.push(new Enemy(self.canvasElement, x , y, 25, 0));
+        self.enemies.push(new Enemy(self.canvasElement, x , y, 25, 0, 2));
       }
     } 
 
     if (self.bigEnemies.length < 2){
-      if (Math.random() > 0.98){
+      if (Math.random() > 0.99){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 60, 2));
+        self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 60, 10, 1.5));
       }
     } 
 
@@ -277,9 +277,12 @@ Game.prototype.checkIfShootsCollidesBigEnemies = function (){
         var x = self.bigEnemies[j].x - self.shoots[i].x;
         var y = self.bigEnemies[j].y - self.shoots[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
-          self.bigEnemies[j].live - 1;
+          self.bigEnemies[j].live--;
           self.score += 100;
           self.shoots.splice(i, 1);
+          if (!self.bigEnemies[j].live) {
+            self.bigEnemies.splice(j, 1);
+          }
           return
         }
       }
