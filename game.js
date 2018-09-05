@@ -156,8 +156,6 @@ Game.prototype.startLoop = function() {
 
   function loop() {
 
-
-  
     if (self.enemies.length < 30){
       if (Math.random() > 0.98){
         var y = self.canvasElement.height * Math.random();
@@ -176,9 +174,9 @@ Game.prototype.startLoop = function() {
 
     if (self.trees.length < 10){
       if (Math.random() > 0.97){
-        var y = self.canvasElement.height * Math.random();
-        var x = self.canvasElement.width * Math.random();
-        self.trees.push(new Tree(self.canvasElement, x , y));
+      var y = self.canvasElement.height * Math.random();
+      var x = self.canvasElement.width * Math.random();
+      self.trees.push(new Tree(self.canvasElement, x , y));
       }
     } 
 
@@ -221,9 +219,13 @@ Game.prototype.startLoop = function() {
     ctx.save();
     ctx.translate(self.width/2 - self.player.x, self.height/2 - self.player.y);
     ctx.drawImage(self.background, -400, -400, self.canvasElement.width + 600, self.canvasElement.height + 600);
+
+    //Minimap
     // ctx.drawImage(self.canvasElement, self.height/2 - self.player.x, self.height/2 - self.player.y, 100, 100);
     
+
     /// DRAW ///
+ 
     self.shoots.forEach(function(item) {
       item.draw()
     });

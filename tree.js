@@ -15,8 +15,7 @@ function Tree(canvasElement, x, y) {
 
 Tree.prototype.draw = function () {
   var self = this;
-
-  self.ctx.fillStyle = 'green'
+  
   var xPosition = self.x - self.radius / 2;
   var yPosition = self.y - self.radius / 2;
   self.ctx.drawImage(self.image, xPosition, yPosition, self.radius, self.radius);
