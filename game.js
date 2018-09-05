@@ -111,6 +111,8 @@ Game.prototype.startLoop = function() {
   });
 
   document.body.addEventListener('keyup', function(){
+    var snd = new Audio('songs/bullet.mp3'); 
+    snd.play();
     if (event.keyCode === 87) {
       self.shoot = new Shoot(self.canvasElement, self.player);
       self.shoot.setYDirection(-1)
@@ -172,10 +174,6 @@ Game.prototype.startLoop = function() {
     });
 
     self.bigEnemies.forEach(function(item) {
-      item.update();
-    });
-
-    self.trees.forEach(function(item) {
       item.update();
     });
 

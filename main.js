@@ -76,9 +76,9 @@ function main () {
         <h1>RULES</h1>
         <div>
           <ul>
-            <il>Move the Player with arrow up, donw, right and left</il>
-            <il>Shoot with W, D, S and A</il>
-            <il>Kill as many enemies as you can</il>
+            <li>Move the Player with arrow up, donw, right and left</li>
+            <li>Shoot with W, D, S and A</li>
+            <li>Kill as many enemies as you can!</li>
           </ul>
         </div>
         <button class="button button-menu">BACK</button>
