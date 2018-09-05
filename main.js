@@ -20,7 +20,7 @@ function main () {
   function buildMusic() {
     music = buildDom(
       `<div>
-        <audio id='song' autoplay src="./songs/mainMusic.mp3">
+        <audio id='song' autoplay loop src="./songs/mainMusic.mp3">
         </audio>
       </div>`
     )

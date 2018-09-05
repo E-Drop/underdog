@@ -150,16 +150,16 @@ Game.prototype.startLoop = function() {
     var y = self.canvasElement.height * Math.random();
     var x = self.canvasElement.width * Math.random();
     self.box = new Box (self.canvasElement, x, y)
-  }, 10000);
+  }, 15000);
 
   document.body.addEventListener('keyup',self.shooting) 
 
   function loop() {
 
-    
+
   
     if (self.enemies.length < 30){
-      if (Math.random() > 0.97){
+      if (Math.random() > 0.98){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
         self.enemies.push(new Enemy(self.canvasElement, x , y, 25, 0, 2));
@@ -219,8 +219,9 @@ Game.prototype.startLoop = function() {
     /// CLEAR CANVAS ///
     ctx.clearRect(0, 0, self.width, self.height);
     ctx.save();
-    ctx.translate(self.width/2-self.player.x, self.height/2-self.player.y);
+    ctx.translate(self.width/2 - self.player.x, self.height/2 - self.player.y);
     ctx.drawImage(self.background, -400, -400, self.canvasElement.width + 600, self.canvasElement.height + 600);
+    // ctx.drawImage(self.canvasElement, self.height/2 - self.player.x, self.height/2 - self.player.y, 100, 100);
     
     /// DRAW ///
     self.shoots.forEach(function(item) {
