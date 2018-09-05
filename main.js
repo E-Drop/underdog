@@ -8,7 +8,6 @@ function buildDom(html) {
   return div.children[0];
 }
 
-
 function main () {
   var splashMain;
   var game;
@@ -16,8 +15,8 @@ function main () {
   var rulesMain;
 
 
-//-----SPLASH------// 
 
+//-----SPLASH------// 
   function buildSplash() {
 
     destroyGameOver();
@@ -59,13 +58,15 @@ function main () {
       }
     });
 
-
   }
 
   function destroySplash() {
     splashMain.remove();
   }
 
+
+
+//-----RULES-----//
   function buildRules() {
     destroySplash();
 
@@ -116,8 +117,8 @@ function main () {
   }
 
 
-//----GAME OVER-----//
 
+//----GAME OVER-----//
   function gameOverTransition(score) {
     destroyGame();
     buildGameOver(score);
@@ -182,7 +183,6 @@ function main () {
 
     var buttonRestart = gameOverMain.querySelector('button.button-menu');
     buttonRestart.addEventListener('click', buildSplash);
-
   }
 
   function destroyGameOver() {
@@ -225,6 +225,8 @@ function main () {
     JSON.parse(localStorage.getItem('scores'));
   }
 
+
+  
 //----Inicialize----//
   buildSplash();
 

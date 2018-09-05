@@ -13,11 +13,6 @@ function Tree(canvasElement, x, y) {
   self.image.src = 'Images/trees.png';
 } 
 
-Tree.prototype.update = function () {
-  var self = this;
-
-};
-
 Tree.prototype.draw = function () {
   var self = this;
 

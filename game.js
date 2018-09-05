@@ -2,6 +2,7 @@
 
 function Game() {
   var self = this;
+
   self.gameIsOver = false;
   self.score = 0;
   self.username = idName;
@@ -12,6 +13,7 @@ function Game() {
 
 Game.prototype.startGame = function() {
   var self = this;
+
   self.gameMain = buildDom(
     `<main class="game">
       <header class="game-header container">
@@ -96,6 +98,7 @@ Game.prototype.startGame = function() {
 
 Game.prototype.startLoop = function() {
   var self = this;
+  
   var ctx = self.canvasElement.getContext('2d');
 
   document.body.addEventListener('keyup', function(){
