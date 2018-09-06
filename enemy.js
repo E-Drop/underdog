@@ -72,6 +72,15 @@ Enemy.prototype.draw = function () {
       if (self.curframe === 4) self.curframe = 0;
     }
 
+  } else if (self.yVelocity < 0) {
+    self.frameCount++
+    self.srcX = self.curframe * 75;
+    self.ctx.drawImage(self.imageUp, self.srcX, 0, 75, 76, xPosition, yPosition, self.size, self.size);
+    if (self.frameCount > 10) {
+      self.curframe++
+      self.frameCount = 0;
+      if (self.curframe === 4) self.curframe = 0;
+    }
   } else if (self.xVelocity < 0) {
     self.frameCount++
     self.srcX = self.curframe * 72;
@@ -82,14 +91,5 @@ Enemy.prototype.draw = function () {
       if (self.curframe === 4) self.curframe = 0;
     }
     
-  } else if (self.yVelocity < 0) {
-    self.frameCount++
-    self.srcX = self.curframe * 75;
-    self.ctx.drawImage(self.imageUp, self.srcX, 0, 75, 76, xPosition, yPosition, self.size, self.size);
-    if (self.frameCount > 10) {
-      self.curframe++
-      self.frameCount = 0;
-      if (self.curframe === 4) self.curframe = 0;
-    }
-  }
+  } 
 };

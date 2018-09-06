@@ -261,7 +261,7 @@ Game.prototype.checkIfEnemiesCollideEnemies = function (){
   for (var i = 0; i < self.enemies.length; i++){
     for (var j = 0; j < self.enemies.length; j++){
       if (j !== i){
-        var a = self.enemies[j].radius + self.enemies[i].radius;
+        var a = self.enemies[j].size + self.enemies[i].size;
         var x = self.enemies[j].x - self.enemies[i].x;
         var y = self.enemies[j].y - self.enemies[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
@@ -292,7 +292,7 @@ Game.prototype.checkIfShootsCollidesEnemies = function (){
   for (var i = 0; i < self.shoots.length; i++){
     for (var j = 0; j < self.enemies.length; j++){
       if (j !== i){
-        var a = self.enemies[j].radius + self.shoots[i].radius;
+        var a = self.enemies[j].size + self.shoots[i].radius;
         var x = self.enemies[j].x - self.shoots[i].x;
         var y = self.enemies[j].y - self.shoots[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
@@ -312,7 +312,7 @@ Game.prototype.checkIfShootsCollidesBigEnemies = function (){
   for (var i = 0; i < self.shoots.length; i++){
     for (var j = 0; j < self.bigEnemies.length; j++){
       if (j !== i){
-        var a = self.bigEnemies[j].radius + self.shoots[i].radius;
+        var a = self.bigEnemies[j].size + self.shoots[i].radius;
         var x = self.bigEnemies[j].x - self.shoots[i].x;
         var y = self.bigEnemies[j].y - self.shoots[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {

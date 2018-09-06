@@ -28,13 +28,13 @@ function Player(canvasElement, lives) {
 Player.prototype.collided = function () {
   var self= this;
   
-  self.lives;
+  self.lives--;
 }
 
 Player.prototype.collidesWithEnemy = function (enemy) {
   var self = this;
 
-  var a = self.radius + enemy.radius
+  var a = self.radius + enemy.size
   var x = self.x - enemy.x;
   var y = self.y - enemy.y;
 
