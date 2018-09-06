@@ -9,7 +9,6 @@ function Game() {
   self.isPause = false;
   self.background = new Image();
   self.background.src = 'Images/MMap.png';
-  self.mistery = false;
 }
 
 Game.prototype.startGame = function() {
@@ -150,7 +149,7 @@ Game.prototype.startLoop = function() {
     var y = self.canvasElement.height * Math.random();
     var x = self.canvasElement.width * Math.random();
     self.box = new Box (self.canvasElement, x, y)
-  }, 15000);
+  }, 100);
 
   document.body.addEventListener('keyup',self.shooting) 
   
@@ -210,6 +209,7 @@ Game.prototype.startLoop = function() {
     self.checkIfEnemiesCollideEnemies();
     self.checkIfBigEnemiesCollidePlayer();
     self.checkIfShootsCollidesBigEnemies();
+    self.checkIfPlayerCollidesBox();
 
     self.livesElement.innerText = self.player.lives;
     self.scoreElement.innerText = self.score;
@@ -227,7 +227,7 @@ Game.prototype.startLoop = function() {
     /// DRAW ///
  
     self.shoots.forEach(function(item) {
-      item.draw()
+      item.draw();
     });
     if (self.box) {
       self.box.draw();
@@ -236,15 +236,15 @@ Game.prototype.startLoop = function() {
     self.player.draw();
 
     self.enemies.forEach(function(item) {
-      item.draw()
+      item.draw();
     });
 
     self.bigEnemies.forEach(function(item) {
-      item.draw()
+      item.draw();
     });
 
     self.trees.forEach(function(item) {
-      item.draw()
+      item.draw();
     });
 
     ctx.restore();
@@ -283,14 +283,12 @@ Game.prototype.checkIfEnemiesCollideEnemies = function (){
   }
 };
 
-// self.enemies[j].xVelocity = self.enemies[i].xVelocity + 0.7;
-// self.enemies[j].yVelocity = self.enemies[i].yVelocity + 0.7;
-
 Game.prototype.checkIfShootsCollidesEnemies = function (){
   var self = this;
 
   for (var i = 0; i < self.shoots.length; i++){
     for (var j = 0; j < self.enemies.length; j++){
+      // chang it !!!!!!!!!!!!
       if (j !== i){
         var a = self.enemies[j].size + self.shoots[i].radius;
         var x = self.enemies[j].x - self.shoots[i].x;
@@ -317,10 +315,10 @@ Game.prototype.checkIfShootsCollidesBigEnemies = function (){
         var y = self.bigEnemies[j].y - self.shoots[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
           self.bigEnemies[j].live--;
-          self.score += 100;
           self.shoots.splice(i, 1);
           if (!self.bigEnemies[j].live) {
             self.bigEnemies.splice(j, 1);
+            self.score += 100;
           }
           return
         }
@@ -356,6 +354,27 @@ Game.prototype.checkIfBigEnemiesCollidePlayer = function () {
     }
   });
 };
+
+Game.prototype.checkIfPlayerCollidesBox = function () {
+  var self = this;
+
+  if (self.box){
+    var a = self.box.size + self.player.radius;
+    var x = self.box.x - self.player.x;
+    var y = self.box.y - self.player.y;
+    if (a > Math.sqrt( (x * x) + (y * y) )) {
+      self.box = 0;
+      self.onBossCallback(self.score, self.player.lives);
+    }
+  }
+};
+
+Game.prototype.onOverBoss = function(callback) {
+  var self = this;
+
+  self.onBossCallback = callback;
+}
+
 
 Game.prototype.onOver = function(callback) {
   var self = this;

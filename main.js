@@ -14,6 +14,7 @@ function main () {
   var gameOverMain;
   var rulesMain;
   var music;
+  var boss = 0;
  
 
 
@@ -133,16 +134,36 @@ function main () {
     game.onOver(function () {
       gameOverTransition(game.score);
     });
+
+    game.onOverBoss(function (score, live){
+      bossOver(score,live)
+    })
+  }
+
+  function bossOver(score,live) {
+    game.gameIsOver = true;
+    destroyGame();
+    boss = new Boss(score, live);
+    boss.startBoss();
+    boss.onOver(function () {
+      gameOverTransition(boss.score);
+    });
   }
 
   function destroyGame() {
     game.destroy();
+
   }
 
-
+  function destroyBoss() {
+    if (boss !== 0) {
+      boss.destroy();
+    }
+  }
 
 //----GAME OVER-----//
   function gameOverTransition(score) {
+    destroyBoss();
     destroyGame();
     buildGameOver(score);
   }
