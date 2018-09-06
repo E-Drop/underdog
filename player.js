@@ -7,11 +7,15 @@ function Player(canvasElement, lives) {
   self.lives = lives;
   self.xVelocity = 0;
   self.yVelocity = 0;
-  self.radius = 10;
+  self.radius = 30;
   self.x = canvasElement.width / 2;
   self.y = canvasElement.height / 2;
   self.ctx = self.canvasElement.getContext('2d');
   self.speed = 3;
+  self.curframe = 0;
+  self.frameCount = 10;
+  self.srcX = 0;
+
   self.imageUp = new Image();
   self.imageUp.src = 'Images/Playerup.png';
 
@@ -82,14 +86,49 @@ Player.prototype.draw = function () {
 
   var xPosition = self.x - self.radius;
   var yPosition = self.y - self.radius;
-  
-  self.ctx.drawImage(self.imageUp, xPosition, yPosition, 25, 25);
+  if(self.xVelocity === 0 & self.yVelocity === 0){
+    self.srcX = self.curframe * 46;
+    self.ctx.drawImage(self.imageUp, self.srcX, 0, 46, 46, xPosition, yPosition, self.radius, self.radius);
+  }
   if (self.yVelocity > 0) {
-    self.ctx.drawImage(self.imageDown, xPosition, yPosition, 25, 25);
-  } else if (self.xVelocity > 0){
-    self.ctx.drawImage(self.imageRight, xPosition, yPosition, 25, 25);
+    self.srcX = self.curframe * 46;
+    self.frameCount++
+    self.ctx.drawImage(self.imageDown, self.srcX, 0, 46, 46, xPosition, yPosition, self.radius, self.radius);
+    if (self.frameCount > 10) {
+      self.curframe++
+      self.frameCount = 0;
+      if (self.curframe === 4) self.curframe = 0;
+    }
+
+  }else if(self.yVelocity < 0) {
+    self.frameCount++
+    self.srcX = self.curframe * 46;
+    self.ctx.drawImage(self.imageUp, self.srcX, 0, 46, 46, xPosition, yPosition, self.radius, self.radius);
+    if (self.frameCount > 10) {
+      self.curframe++
+      self.frameCount = 0;
+      if (self.curframe === 4) self.curframe = 0;
+    }
+
+  }else if (self.xVelocity > 0){
+    self.srcX = self.curframe * 45;
+    self.frameCount++
+    self.ctx.drawImage(self.imageRight, self.srcX, 0, 45, 45, xPosition, yPosition, self.radius, self.radius);
+    if (self.frameCount > 10) {
+      self.curframe++
+      self.frameCount = 0;
+      if (self.curframe === 4) self.curframe = 0;
+    }
+
   } else if (self.xVelocity < 0) {
-    self.ctx.drawImage(self.imageLeft, xPosition, yPosition, 25, 25);
+    self.frameCount++
+    self.srcX = self.curframe * 45;
+    self.ctx.drawImage(self.imageLeft, self.srcX, 0, 45, 45, xPosition, yPosition, self.radius, self.radius);
+    if (self.frameCount > 10) {
+      self.curframe++
+      self.frameCount = 0;
+      if (self.curframe === 4) self.curframe = 0;
+    }
   }
 };
 

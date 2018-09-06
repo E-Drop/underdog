@@ -160,7 +160,7 @@ Game.prototype.startLoop = function() {
       if (Math.random() > 0.98){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.enemies.push(new Enemy(self.canvasElement, x , y, 35, 0, 3));
+        self.enemies.push(new Enemy(self.canvasElement, x , y, 40, 0, 3));
       }
     } 
 
@@ -168,14 +168,14 @@ Game.prototype.startLoop = function() {
       if (Math.random() > 0.99){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 60, 10, 2));
+        self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 70, 10, 2));
       }
     } 
 
     if (self.trees.length < 50){
       if (Math.random() > 0.97){
-      var y = self.canvasElement.height * 2 * Math.random();
-      var x = self.canvasElement.width *  2 * Math.random();
+      var y = self.canvasElement.height * 1.5 * Math.random();
+      var x = self.canvasElement.width *  1.5 * Math.random();
       self.trees.push(new Tree(self.canvasElement, x , y));
       }
     } 
@@ -219,10 +219,13 @@ Game.prototype.startLoop = function() {
     
     ctx.save();
     ctx.clearRect(0, 0, self.width, self.height);
-    
+    ctx.fillStyle = 'red'
     ctx.translate(self.canvasElement.width/2 - self.player.x, self.canvasElement.height/2 - self.player.y);
     ctx.drawImage(self.background, -self.canvasElement.width, -self.canvasElement.height);
     ctx.drawImage(self.canvasElement, -self.canvasElement.width/2 + self.player.x + 20, -self.canvasElement.height/2 + self.player.y + 20, self.canvasElement.width/10, self.canvasElement.height/10);
+    // ctx.fillRect(-self.canvasElement.width/2 + self.player.x + 80, -self.canvasElement.height/2 + self.player.y + 50, 10, 10);
+    ctx.arc(-self.canvasElement.width/2 + self.player.x + 90, -self.canvasElement.height/2 + self.player.y + 60, 5, 0, 2 * Math.PI)
+    ctx.fill();
 
     /// DRAW ///
  

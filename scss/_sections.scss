@@ -12,7 +12,6 @@
   }
   img {
     width: 80%;
-    border: rgba(139, 69, 19, 0.76) solid 2px;
     border-radius: 30px;
   }
 }
@@ -78,9 +77,15 @@ input {
 .canvas {
   flex: 1;
   canvas {
-    border: 3px solid rgb(95, 71, 5);
     width: 100%;
   }
+}
+
+.egg {
+  position: absolute;
+  font-size: 50px;
+  top: 100px;
+  right: 100px; 
 }
 
 .game-over {

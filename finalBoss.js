@@ -28,6 +28,7 @@ Boss.prototype.startBoss = function() {
           <span class="value"></span>
         </div>
       </header>
+      <p class="egg">Made by Axel and company in collaboration with Ironhack ;)</p>
       <div class="canvas">
         <canvas></canvas>
       </div>
@@ -52,7 +53,7 @@ Boss.prototype.startBoss = function() {
     
    self.player = new Player(self.canvasElement, self.lives);
 
-   self.boss = new Enemy(self.canvasElement, 50 , 50, 200, 100, 3);
+   self.boss = new Enemy(self.canvasElement, 50 , 50, 250, 100, 3);
 
 
    self.handleHeyDown = function (event) {
@@ -83,8 +84,8 @@ Boss.prototype.startBoss = function() {
   document.body.addEventListener('keyup', self.handleHeyUp);
 
   self.shoots = [];
-  self.startLoop();
 
+  self.startLoop();
 }
 
 Boss.prototype.startLoop = function() {
@@ -129,7 +130,6 @@ Boss.prototype.startLoop = function() {
   };
 
   document.body.addEventListener('keyup',self.shooting) 
-  
 
   function loop() {
 
@@ -141,6 +141,19 @@ Boss.prototype.startLoop = function() {
     });
 
     self.boss.update()
+
+    if (self.player.y+self.player.radius < 0){
+      self.player.yVelocity = 0.7;
+    }
+    if (self.player.y > self.canvasElement.height){
+      self.player.yVelocity = - 0.7;
+    }
+    if (self.player.x+self.player.radius < 0){
+      self.player.xVelocity = 0.7;
+    }
+    if (self.player.x > self.canvasElement.width){
+      self.player.xVelocity = - 0.7;
+    }
 
     self.boss.followPlayer(self.player.x, self.player.y);
 
@@ -172,7 +185,6 @@ Boss.prototype.startLoop = function() {
   window.requestAnimationFrame(loop);
 };
 
-
 Boss.prototype.checkIfShootsCollidesBoss = function (){
   var self = this;
 
@@ -195,6 +207,7 @@ Boss.prototype.checkIfShootsCollidesBoss = function (){
 
 Boss.prototype.checkIfBossCollidePlayer = function () {
   var self = this;
+
   if (self.player.collidesWithEnemy(self.boss)) {
     self.player.lives = 0;
     if (!self.player.lives) {

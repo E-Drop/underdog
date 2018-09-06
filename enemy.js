@@ -14,7 +14,6 @@ function Enemy(canvasElement, x, y ,size, live, speed) {
   self.speed = speed;
   self.curframe = 0;
   self.frameCount = 10;
-  self.tickcount = 0;
   self.srcX = 0;
 
   self.imageUp = new Image();
