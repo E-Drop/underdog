@@ -8,7 +8,7 @@ function Game() {
   self.username = idName;
   self.isPause = false;
   self.background = new Image();
-  self.background.src = 'Images/background2.jpg';
+  self.background.src = 'Images/MMap.png';
   self.mistery = false;
 }
 
@@ -153,6 +153,7 @@ Game.prototype.startLoop = function() {
   }, 15000);
 
   document.body.addEventListener('keyup',self.shooting) 
+  
 
   function loop() {
 
@@ -160,7 +161,7 @@ Game.prototype.startLoop = function() {
       if (Math.random() > 0.98){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.enemies.push(new Enemy(self.canvasElement, x , y, 25, 0, 2));
+        self.enemies.push(new Enemy(self.canvasElement, x , y, 35, 0, 2));
       }
     } 
 
@@ -172,10 +173,10 @@ Game.prototype.startLoop = function() {
       }
     } 
 
-    if (self.trees.length < 10){
+    if (self.trees.length < 50){
       if (Math.random() > 0.97){
-      var y = self.canvasElement.height * Math.random();
-      var x = self.canvasElement.width * Math.random();
+      var y = self.canvasElement.height * 2 * Math.random();
+      var x = self.canvasElement.width *  2 * Math.random();
       self.trees.push(new Tree(self.canvasElement, x , y));
       }
     } 
@@ -215,14 +216,13 @@ Game.prototype.startLoop = function() {
 
 
     /// CLEAR CANVAS ///
-    ctx.clearRect(0, 0, self.width, self.height);
-    ctx.save();
-    ctx.translate(self.width/2 - self.player.x, self.height/2 - self.player.y);
-    ctx.drawImage(self.background, -400, -400, self.canvasElement.width + 600, self.canvasElement.height + 600);
-
-    //Minimap
-    // ctx.drawImage(self.canvasElement, self.height/2 - self.player.x, self.height/2 - self.player.y, 100, 100);
     
+    ctx.save();
+    ctx.clearRect(0, 0, self.width, self.height);
+    
+    ctx.translate(self.canvasElement.width/2 - self.player.x, self.canvasElement.height/2 - self.player.y);
+    ctx.drawImage(self.background, -self.canvasElement.width, -self.canvasElement.height);
+    ctx.drawImage(self.canvasElement, -self.canvasElement.width/2 + self.player.x + 20, -self.canvasElement.height/2 + self.player.y + 20, self.canvasElement.width/10, self.canvasElement.height/10);
 
     /// DRAW ///
  
@@ -265,13 +265,26 @@ Game.prototype.checkIfEnemiesCollideEnemies = function (){
         var x = self.enemies[j].x - self.enemies[i].x;
         var y = self.enemies[j].y - self.enemies[i].y;
         if (a > Math.sqrt( (x * x) + (y * y) )) {
-          self.enemies[j].xVelocity = self.enemies[i].xVelocity + 0.7;
-          self.enemies[j].yVelocity = self.enemies[i].yVelocity + 0.7;
+          var velocityX = self.enemies[j].xVelocity - self.enemies[i].xVelocity;
+          var velocityY = self.enemies[j].yVelocity - self.enemies[i].yVelocity;
+          var product = x * velocityX + y * velocityY;
+          // if(product > 0) {
+          var collisionScale = product/((x * x) + (y * y));
+          var xCollision = x * collisionScale;
+          var yCollision = y * collisionScale;
+          self.enemies[i].xVelocity += xCollision;
+          self.enemies[i].yVelocity += yCollision;
+          self.enemies[j].xVelocity -= xCollision;
+          self.enemies[j].yVelocity -= yCollision;
+          // }
         }
       }
     }
   }
 };
+
+// self.enemies[j].xVelocity = self.enemies[i].xVelocity + 0.7;
+// self.enemies[j].yVelocity = self.enemies[i].yVelocity + 0.7;
 
 Game.prototype.checkIfShootsCollidesEnemies = function (){
   var self = this;

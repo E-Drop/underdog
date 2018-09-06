@@ -210,8 +210,6 @@ function main () {
     var buttonRestart = gameOverMain.querySelector('button.button-menu');
     buttonRestart.addEventListener('click', buildSplash);
 
-    // var buttonRestart = gameOverMain.querySelector('button.button-menu');
-    // buttonRestart.addEventListener('click', buildMusic);
   }
 
   function destroyGameOver() {
