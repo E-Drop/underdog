@@ -160,7 +160,7 @@ Game.prototype.startLoop = function() {
       if (Math.random() > 0.98){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.enemies.push(new Enemy(self.canvasElement, x , y, 35, 0, 2));
+        self.enemies.push(new Enemy(self.canvasElement, x , y, 35, 0, 3));
       }
     } 
 
@@ -168,7 +168,7 @@ Game.prototype.startLoop = function() {
       if (Math.random() > 0.99){
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
-        self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 60, 10, 1.5));
+        self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 60, 10, 2));
       }
     } 
 

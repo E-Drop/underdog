@@ -52,7 +52,7 @@ Boss.prototype.startBoss = function() {
     
    self.player = new Player(self.canvasElement, self.lives);
 
-   self.boss = new Enemy(self.canvasElement, 50 , 50, 100, 50, 1.5);
+   self.boss = new Enemy(self.canvasElement, 50 , 50, 200, 100, 3);
 
 
    self.handleHeyDown = function (event) {
@@ -177,14 +177,14 @@ Boss.prototype.checkIfShootsCollidesBoss = function (){
   var self = this;
 
   for (var i = 0; i < self.shoots.length; i++){
-    var a = self.boss.size + self.shoots[i].radius;
-    var x = self.boss.x - self.shoots[i].x;
-    var y = self.boss.y - self.shoots[i].y;
-    if (a > Math.sqrt( (x * x) + (y * y) )) {
+    const collidesRight = self.shoots[i].x + self.shoots[i].radius / 2 > self.boss.x - self.boss.size / 2;
+    const collidesLeft = self.shoots[i].x - self.shoots[i].radius / 2 < self.boss.x + self.boss.size / 2;
+    const collidesTop = self.shoots[i].y - self.shoots[i].radius / 2 < self.boss.y + self.boss.size / 2;
+    const collidesBottom = self.shoots[i].y + self.shoots[i].radius / 2 > self.boss.y - self.boss.size / 2;
+    if (collidesLeft && collidesRight && collidesTop && collidesBottom) {
       self.boss.live--
       self.shoots.splice(i, 1);
       if (!self.boss.live) {
-        self.boss = 0;
         self.score += 10000;
         self.gameOver();
       }

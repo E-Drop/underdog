@@ -34,11 +34,12 @@ Player.prototype.collided = function () {
 Player.prototype.collidesWithEnemy = function (enemy) {
   var self = this;
 
-  var a = self.radius + enemy.size
-  var x = self.x - enemy.x;
-  var y = self.y - enemy.y;
+  const collidesRight = self.x + self.radius / 2 > enemy.x - enemy.size / 2;
+  const collidesLeft = self.x - self.radius / 2 < enemy.x + enemy.size / 2;
+  const collidesTop = self.y - self.radius / 2 < enemy.y + enemy.size / 2;
+  const collidesBottom = self.y + self.radius / 2 > enemy.y - enemy.size / 2;
 
-  if (a > Math.sqrt( (x * x) + (y * y) )) {
+  if (collidesLeft && collidesRight && collidesTop && collidesBottom) {
     return true;
   }
   return false;
@@ -62,6 +63,18 @@ Player.prototype.update = function () {
   self.x = self.x + self.xVelocity * self.speed;
   self.y = self.y + self.yVelocity * self.speed;
 
+  if (self.y < -self.canvasElement.height - 100){
+    self.yVelocity = 0.8;
+  }
+  if (self.y > self.canvasElement.height + 400){
+    self.yVelocity = -0.8;
+  }
+  if (self.x <  -self.canvasElement.width -100){
+    self.xVelocity = 0.8;
+  }
+  if (self.x > self.canvasElement.width + 200){
+    self.xVelocity = -0.8;
+  }
 };
 
 Player.prototype.draw = function () {
