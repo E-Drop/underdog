@@ -8,7 +8,7 @@ function buildDom(html) {
   return div.children[0];
 }
 
-function main () {
+function main() {
   var splashMain;
   var game;
   var gameOverMain;
@@ -16,7 +16,6 @@ function main () {
   var music;
   var boss = 0;
  
-
 
   function buildMusic() {
     music = buildDom(
@@ -65,7 +64,7 @@ function main () {
       idName = username(input);
     });
 
-    function username (item) {
+    function username(item) {
       return item.value;
     }
 
@@ -135,8 +134,8 @@ function main () {
       gameOverTransition(game.score);
     });
 
-    game.onOverBoss(function (score, live){
-      bossOver(score,live)
+    game.onOverBoss(function(score, live) {
+      bossOver(score,live);
     })
   }
 
@@ -145,7 +144,7 @@ function main () {
     destroyGame();
     boss = new Boss(score, live);
     boss.startBoss();
-    boss.onOver(function () {
+    boss.onOver(function() {
       gameOverTransition(boss.score);
     });
   }
@@ -209,7 +208,7 @@ function main () {
     var scoreObject = {
       username: idName,
       score: score
-    }
+    };
 
     document.body.removeEventListener('keyup', game.shooting);
 
@@ -223,7 +222,7 @@ function main () {
     var span = gameOverMain.querySelector('span');
     if (idName !== undefined) {
       span.innerText = idName + ' your score is: ' + score + ' ';
-    }
+    };
 
     var buttonRestart = gameOverMain.querySelector('button.button-restart');
     buttonRestart.addEventListener('click', startGame);
@@ -245,11 +244,11 @@ function main () {
       numberScores = scores.length;
     }
 
-    for (var i = 0; i < numberScores; i++){
-      var name = gameOverMain.querySelector('.name' + i)
+    for (var i = 0; i < numberScores; i++) {
+      var name = gameOverMain.querySelector('.name' + i);
       name.innerText = scores[i].username;
 
-      var score = gameOverMain.querySelector('.score' + i)
+      var score = gameOverMain.querySelector('.score' + i);
       score.innerText = scores[i].score;
     }
   }
@@ -258,14 +257,14 @@ function main () {
     var scoreList = [];
     if (!localStorage.getItem('scores')) {
       scoreList.push(scoreObject);
-      scoreList.sort(function (a, b) {
+      scoreList.sort(function(a, b) {
         return b.score - a.score;
       });
       localStorage.setItem('scores', JSON.stringify(scoreList));
     } else {
       var scoreList = JSON.parse(localStorage.getItem('scores'));
       scoreList.push(scoreObject);
-      scoreList.sort(function(a, b){
+      scoreList.sort(function(a, b) {
         return b.score - a.score;
       })
       localStorage.setItem('scores', JSON.stringify(scoreList));
@@ -274,7 +273,6 @@ function main () {
   }
 
 
-  
 //----Inicialize----//
   buildSplash();
 

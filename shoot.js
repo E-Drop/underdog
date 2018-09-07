@@ -25,26 +25,26 @@ function Shoot(canvasElement, player) {
   self.imageRight.src = 'Images/shootright.png';
 } 
 
-Shoot.prototype.setYDirection = function (direction) {
+Shoot.prototype.setYDirection = function(direction) {
   var self = this;
   
   self.yVelocity = direction;
 };
 
-Shoot.prototype.setXDirection = function (direction) {
+Shoot.prototype.setXDirection = function(direction) {
   var self = this;
 
   self.xVelocity = direction;
 };
 
-Shoot.prototype.update = function () {
+Shoot.prototype.update = function() {
   var self = this;
 
     self.x = self.x + self.xVelocity * self.speed;
     self.y = self.y + self.yVelocity * self.speed;
 };
 
-Shoot.prototype.draw = function () {
+Shoot.prototype.draw = function() {
   var self = this;
 
   var xPosition = self.x - 30;

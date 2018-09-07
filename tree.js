@@ -13,7 +13,7 @@ function Tree(canvasElement, x, y) {
   self.image.src = 'Images/trees.png';
 } 
 
-Tree.prototype.draw = function () {
+Tree.prototype.draw = function() {
   var self = this;
   
   var xPosition = self.x - self.radius / 2;

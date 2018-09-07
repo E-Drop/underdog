@@ -13,12 +13,7 @@ function Box(canvasElement, x, y) {
   self.image.src = 'Images/misterybox.png';
 } 
 
-Box.prototype.collide = function () {
-
-
-}
-
-Box.prototype.draw = function () {
+Box.prototype.draw = function() {
   var self = this;
 
   var xPosition = self.x - self.size / 2;

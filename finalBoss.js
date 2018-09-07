@@ -1,6 +1,6 @@
 'use strict';
 
-function Boss(score, lives){
+function Boss(score, lives) {
   var self = this;
 
   self.bossIsOver = false;
@@ -8,7 +8,6 @@ function Boss(score, lives){
   self.username = idName;
   self.lives = lives;
 }
-
 
 Boss.prototype.startBoss = function() {
   var self = this;
@@ -41,9 +40,11 @@ Boss.prototype.startBoss = function() {
   );
 
   document.body.appendChild(self.bossMain);
+  
     if (self.username !== undefined) {
       self.bossMain.querySelector('p').innerText = self.username;
     }
+
     self.canvasParentElement = self.bossMain.querySelector('.canvas');
     self.canvasElement = self.bossMain.querySelector('canvas');
   
@@ -62,7 +63,6 @@ Boss.prototype.startBoss = function() {
     self.player = new Player(self.canvasElement, self.lives);
 
     self.boss = new Enemy(self.canvasElement, 50 , 50, 250, 100, 2.5);
-
 
    self.handleHeyDown = function (event) {
     if (event.key === 'ArrowUp') {
@@ -108,37 +108,37 @@ Boss.prototype.startLoop = function() {
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setYDirection(-1)
-        self.shoots.push(self.shoot)
+        self.shoot.setYDirection(-1);
+        self.shoots.push(self.shoot);
       }
       if (event.keyCode === 65) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setXDirection(-1)
-        self.shoots.push(self.shoot)
+        self.shoot.setXDirection(-1);
+        self.shoots.push(self.shoot);
       }
       if (event.keyCode === 83) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setYDirection(1)
-        self.shoots.push(self.shoot)
+        self.shoot.setYDirection(1);
+        self.shoots.push(self.shoot);
       }
       if (event.keyCode === 68) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setXDirection(1)
-        self.shoots.push(self.shoot)
+        self.shoot.setXDirection(1);
+        self.shoots.push(self.shoot);
       }
     };
   }
 
-  document.body.addEventListener('keyup',self.shooting) 
+  document.body.addEventListener('keyup',self.shooting); 
 
   function loop() {
 
@@ -149,18 +149,18 @@ Boss.prototype.startLoop = function() {
       item.update();
     });
 
-    self.boss.update()
+    self.boss.update();
 
-    if (self.player.y+self.player.radius < 0){
+    if (self.player.y+self.player.radius < 0) {
       self.player.yVelocity = 0.7;
     }
-    if (self.player.y > self.canvasElement.height){
+    if (self.player.y > self.canvasElement.height) {
       self.player.yVelocity = - 0.7;
     }
-    if (self.player.x+self.player.radius < 0){
+    if (self.player.x+self.player.radius < 0) {
       self.player.xVelocity = 0.7;
     }
-    if (self.player.x > self.canvasElement.width){
+    if (self.player.x > self.canvasElement.width) {
       self.player.xVelocity = - 0.7;
     }
 
@@ -186,7 +186,6 @@ Boss.prototype.startLoop = function() {
     self.player.draw();
     self.boss.draw();
 
-
     if (!self.bossIsOver) {
       window.requestAnimationFrame(loop);
     }
@@ -194,10 +193,10 @@ Boss.prototype.startLoop = function() {
   window.requestAnimationFrame(loop);
 };
 
-Boss.prototype.checkIfShootsCollidesBoss = function (){
+Boss.prototype.checkIfShootsCollidesBoss = function() {
   var self = this;
 
-  for (var i = 0; i < self.shoots.length; i++){
+  for (var i = 0; i < self.shoots.length; i++) {
     const collidesRight = self.shoots[i].x + self.shoots[i].radius / 2 > self.boss.x - self.boss.size / 2;
     const collidesLeft = self.shoots[i].x - self.shoots[i].radius / 2 < self.boss.x + self.boss.size / 2;
     const collidesTop = self.shoots[i].y - self.shoots[i].radius / 2 < self.boss.y + self.boss.size / 2;
@@ -214,7 +213,7 @@ Boss.prototype.checkIfShootsCollidesBoss = function (){
   }
 };
 
-Boss.prototype.checkIfBossCollidePlayer = function () {
+Boss.prototype.checkIfBossCollidePlayer = function() {
   var self = this;
 
   if (self.player.collidesWithEnemy(self.boss)) {

@@ -61,7 +61,7 @@ Game.prototype.startGame = function() {
   
  self.player = new Player(self.canvasElement, 5);
 
- self.handleHeyDown = function (event) {
+ self.handleHeyDown = function(event) {
     if (event.key === 'ArrowUp') {
       self.player.setYDirection(-1);
     } else if (event.key === 'ArrowDown') {
@@ -73,7 +73,7 @@ Game.prototype.startGame = function() {
     } 
   };
 
-  self.handleHeyUp = function (event) {
+  self.handleHeyUp = function(event) {
     if (event.key === 'ArrowUp') {
       self.player.setYDirection(0);
     } else if (event.key === 'ArrowDown') {
@@ -101,7 +101,7 @@ Game.prototype.startLoop = function() {
   
   var ctx = self.canvasElement.getContext('2d');
 
-  document.body.addEventListener('keyup', function(){
+  document.body.addEventListener('keyup', function() {
     if (event.key === ' ') {
       self.isPause = !self.isPause;
       if (!self.isPause) {
@@ -111,38 +111,38 @@ Game.prototype.startLoop = function() {
   });
   
   if (!self.gameIsOver) {
-    self.shooting = function(){
+    self.shooting = function() {
       if (event.keyCode === 87) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setYDirection(-1)
-        self.shoots.push(self.shoot)
+        self.shoot.setYDirection(-1);
+        self.shoots.push(self.shoot);
       }
       if (event.keyCode === 65) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setXDirection(-1)
-        self.shoots.push(self.shoot)
+        self.shoot.setXDirection(-1);
+        self.shoots.push(self.shoot);
       }
       if (event.keyCode === 83) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setYDirection(1)
-        self.shoots.push(self.shoot)
+        self.shoot.setYDirection(1);
+        self.shoots.push(self.shoot);
       }
       if (event.keyCode === 68) {
         var snd = new Audio('songs/bullet.mp3'); 
         snd.play();
   
         self.shoot = new Shoot(self.canvasElement, self.player);
-        self.shoot.setXDirection(1)
-        self.shoots.push(self.shoot)
+        self.shoot.setXDirection(1);
+        self.shoots.push(self.shoot);
       }
     };
   }
@@ -150,38 +150,36 @@ Game.prototype.startLoop = function() {
   setTimeout( function() {
     var y = self.canvasElement.height * Math.random();
     var x = self.canvasElement.width * Math.random();
-    self.box = new Box (self.canvasElement, x, y)
+    self.box = new Box (self.canvasElement, x, y);
   }, 10000);
 
-  document.body.addEventListener('keyup',self.shooting) 
+  document.body.addEventListener('keyup',self.shooting);
   
-
   function loop() {
 
-    if (self.enemies.length < 30){
-      if (Math.random() > 0.98){
+    if (self.enemies.length < 30) {
+      if (Math.random() > 0.98) {
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
         self.enemies.push(new Enemy(self.canvasElement, x , y, 40, 0, 3));
       }
     } 
 
-    if (self.bigEnemies.length < 2){
-      if (Math.random() > 0.99){
+    if (self.bigEnemies.length < 2) {
+      if (Math.random() > 0.99) {
         var y = self.canvasElement.height * Math.random();
         var x = self.canvasElement.width * Math.random();
         self.bigEnemies.push(new Enemy(self.canvasElement, x , y, 70, 10, 2));
       }
     } 
 
-    if (self.trees.length < 50){
-      if (Math.random() > 0.97){
-      var y = self.canvasElement.height * 1.5 * Math.random();
-      var x = self.canvasElement.width *  1.5 * Math.random();
+    if (self.trees.length < 50) {
+      if (Math.random() > 0.97) {
+      var y = self.canvasElement.height *  Math.random();
+      var x = self.canvasElement.width *  Math.random();
       self.trees.push(new Tree(self.canvasElement, x , y));
       }
     } 
-
 
     /// UPDATE ///
     self.player.update();
@@ -221,7 +219,7 @@ Game.prototype.startLoop = function() {
     
     ctx.save();
     ctx.clearRect(0, 0, self.width, self.height);
-    ctx.fillStyle = 'red'
+    ctx.fillStyle = 'red';
     ctx.translate(self.canvasElement.width/2 - self.player.x, self.canvasElement.height/2 - self.player.y);
     ctx.drawImage(self.background, -self.canvasElement.width, -self.canvasElement.height);
 
@@ -249,7 +247,7 @@ Game.prototype.startLoop = function() {
     });
 
     ctx.drawImage(self.canvasElement, -self.canvasElement.width/2 + self.player.x + 20, -self.canvasElement.height/2 + self.player.y + 20, self.canvasElement.width/10, self.canvasElement.height/10);
-    ctx.arc(-self.canvasElement.width/2 + self.player.x + 90, -self.canvasElement.height/2 + self.player.y + 60, 5, 0, 2 * Math.PI)
+    ctx.arc(-self.canvasElement.width/2 + self.player.x + 90, -self.canvasElement.height/2 + self.player.y + 60, 5, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.restore();
@@ -260,12 +258,12 @@ Game.prototype.startLoop = function() {
   window.requestAnimationFrame(loop);
 };
 
-Game.prototype.checkIfEnemiesCollideEnemies = function (){
+Game.prototype.checkIfEnemiesCollideEnemies = function () {
   var self = this;
 
-  for (var i = 0; i < self.enemies.length; i++){
-    for (var j = 0; j < self.enemies.length; j++){
-      if (j !== i){
+  for (var i = 0; i < self.enemies.length; i++) {
+    for (var j = 0; j < self.enemies.length; j++) {
+      if (j !== i) {
         var a = self.enemies[j].size + self.enemies[i].size;
         var x = self.enemies[j].x - self.enemies[i].x;
         var y = self.enemies[j].y - self.enemies[i].y;
@@ -288,13 +286,12 @@ Game.prototype.checkIfEnemiesCollideEnemies = function (){
   }
 };
 
-Game.prototype.checkIfShootsCollidesEnemies = function (){
+Game.prototype.checkIfShootsCollidesEnemies = function() {
   var self = this;
 
-  for (var i = 0; i < self.shoots.length; i++){
-    for (var j = 0; j < self.enemies.length; j++){
-      // chang it !!!!!!!!!!!!
-      if (j !== i){
+  for (var i = 0; i < self.shoots.length; i++) {
+    for (var j = 0; j < self.enemies.length; j++) {
+      if (j !== i) {
         var a = self.enemies[j].size + self.shoots[i].radius;
         var x = self.enemies[j].x - self.shoots[i].x;
         var y = self.enemies[j].y - self.shoots[i].y;
@@ -309,12 +306,12 @@ Game.prototype.checkIfShootsCollidesEnemies = function (){
   }
 };
 
-Game.prototype.checkIfShootsCollidesBigEnemies = function (){
+Game.prototype.checkIfShootsCollidesBigEnemies = function() {
   var self = this;
 
-  for (var i = 0; i < self.shoots.length; i++){
-    for (var j = 0; j < self.bigEnemies.length; j++){
-      if (j !== i){
+  for (var i = 0; i < self.shoots.length; i++) {
+    for (var j = 0; j < self.bigEnemies.length; j++) {
+      if (j !== i) {
         const collidesRight = self.shoots[i].x + self.shoots[i].radius / 2 > self.bigEnemies[j].x - self.bigEnemies[j].size / 2;
         const collidesLeft = self.shoots[i].x - self.shoots[i].radius / 2 < self.bigEnemies[j].x + self.bigEnemies[j].size / 2;
         const collidesTop = self.shoots[i].y - self.shoots[i].radius / 2 < self.bigEnemies[j].y + self.bigEnemies[j].size / 2;
@@ -333,7 +330,7 @@ Game.prototype.checkIfShootsCollidesBigEnemies = function (){
   }
 };
 
-Game.prototype.checkIfEnemiesCollidePlayer = function () {
+Game.prototype.checkIfEnemiesCollidePlayer = function() {
   var self = this;
 
   self.enemies.forEach( function(item, index) {
@@ -347,7 +344,7 @@ Game.prototype.checkIfEnemiesCollidePlayer = function () {
   });
 };
 
-Game.prototype.checkIfBigEnemiesCollidePlayer = function () {
+Game.prototype.checkIfBigEnemiesCollidePlayer = function() {
   var self = this;
 
   self.bigEnemies.forEach( function(item, index) {
@@ -361,10 +358,10 @@ Game.prototype.checkIfBigEnemiesCollidePlayer = function () {
   });
 };
 
-Game.prototype.checkIfPlayerCollidesBox = function () {
+Game.prototype.checkIfPlayerCollidesBox = function() {
   var self = this;
 
-  if (self.box){
+  if (self.box) {
     var a = self.box.size + self.player.radius;
     var x = self.box.x - self.player.x;
     var y = self.box.y - self.player.y;
@@ -380,7 +377,6 @@ Game.prototype.onOverBoss = function(callback) {
 
   self.onBossCallback = callback;
 }
-
 
 Game.prototype.onOver = function(callback) {
   var self = this;
