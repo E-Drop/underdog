@@ -7,7 +7,7 @@ function Tree(canvasElement, x, y) {
   self.x = x;
   self.y = y;
   self.ctx = self.canvasElement.getContext('2d');
-  self.radius = 80;
+  self.radius = 100;
 
   self.image = new Image();
   self.image.src = 'Images/trees.png';

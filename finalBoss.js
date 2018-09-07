@@ -32,6 +32,11 @@ Boss.prototype.startBoss = function() {
       <div class="canvas">
         <canvas></canvas>
       </div>
+      <div>
+        <audio id='song' preload="auto" loop
+        src="./songs/bosssong.mp3">
+        </audio>
+      </div>
     </main>`
   );
 
@@ -50,10 +55,13 @@ Boss.prototype.startBoss = function() {
   
     self.canvasElement.setAttribute('width', self.width);
     self.canvasElement.setAttribute('height', self.height);
-    
-   self.player = new Player(self.canvasElement, self.lives);
 
-   self.boss = new Enemy(self.canvasElement, 50 , 50, 250, 100, 3);
+    self.music = self.bossMain.querySelector('audio');
+    self.music.autoplay = true;
+    
+    self.player = new Player(self.canvasElement, self.lives);
+
+    self.boss = new Enemy(self.canvasElement, 50 , 50, 250, 100, 2.5);
 
 
    self.handleHeyDown = function (event) {
@@ -93,41 +101,42 @@ Boss.prototype.startLoop = function() {
   
   var ctx = self.canvasElement.getContext('2d');
 
+  if (!self.bossIsOver){
+    self.shooting = function(){
+      if (event.keyCode === 87) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
   
-  self.shooting = function(){
-    if (event.keyCode === 87) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setYDirection(-1)
-      self.shoots.push(self.shoot)
-    }
-    if (event.keyCode === 65) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setXDirection(-1)
-      self.shoots.push(self.shoot)
-    }
-    if (event.keyCode === 83) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setYDirection(1)
-      self.shoots.push(self.shoot)
-    }
-    if (event.keyCode === 68) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setXDirection(1)
-      self.shoots.push(self.shoot)
-    }
-  };
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setYDirection(-1)
+        self.shoots.push(self.shoot)
+      }
+      if (event.keyCode === 65) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setXDirection(-1)
+        self.shoots.push(self.shoot)
+      }
+      if (event.keyCode === 83) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setYDirection(1)
+        self.shoots.push(self.shoot)
+      }
+      if (event.keyCode === 68) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setXDirection(1)
+        self.shoots.push(self.shoot)
+      }
+    };
+  }
 
   document.body.addEventListener('keyup',self.shooting) 
 

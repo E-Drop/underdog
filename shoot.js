@@ -47,9 +47,8 @@ Shoot.prototype.update = function () {
 Shoot.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = 'orange'
-  var xPosition = self.x - self.radius*3;
-  var yPosition = self.y - self.radius*3;
+  var xPosition = self.x - 30;
+  var yPosition = self.y - 30;
   
   if (self.yVelocity > 0) {
     self.ctx.drawImage(self.imageDown, xPosition, yPosition, 20, 20);

@@ -34,7 +34,7 @@ Game.prototype.startGame = function() {
       </div>
       <div>
         <audio id='song' preload="auto" loop
-        src="./songs/Requiem for a dream [epic].mp3">
+        src="./songs/gamesong.mp3">
         </audio>
       </div>
     </main>`
@@ -110,46 +110,48 @@ Game.prototype.startLoop = function() {
     }
   });
   
-  self.shooting = function(){
-    if (event.keyCode === 87) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setYDirection(-1)
-      self.shoots.push(self.shoot)
-    }
-    if (event.keyCode === 65) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setXDirection(-1)
-      self.shoots.push(self.shoot)
-    }
-    if (event.keyCode === 83) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setYDirection(1)
-      self.shoots.push(self.shoot)
-    }
-    if (event.keyCode === 68) {
-      var snd = new Audio('songs/bullet.mp3'); 
-      snd.play();
-
-      self.shoot = new Shoot(self.canvasElement, self.player);
-      self.shoot.setXDirection(1)
-      self.shoots.push(self.shoot)
-    }
-  };
+  if (!self.gameIsOver) {
+    self.shooting = function(){
+      if (event.keyCode === 87) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setYDirection(-1)
+        self.shoots.push(self.shoot)
+      }
+      if (event.keyCode === 65) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setXDirection(-1)
+        self.shoots.push(self.shoot)
+      }
+      if (event.keyCode === 83) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setYDirection(1)
+        self.shoots.push(self.shoot)
+      }
+      if (event.keyCode === 68) {
+        var snd = new Audio('songs/bullet.mp3'); 
+        snd.play();
+  
+        self.shoot = new Shoot(self.canvasElement, self.player);
+        self.shoot.setXDirection(1)
+        self.shoots.push(self.shoot)
+      }
+    };
+  }
 
   setTimeout( function() {
     var y = self.canvasElement.height * Math.random();
     var x = self.canvasElement.width * Math.random();
     self.box = new Box (self.canvasElement, x, y)
-  }, 100);
+  }, 10000);
 
   document.body.addEventListener('keyup',self.shooting) 
   
@@ -222,10 +224,6 @@ Game.prototype.startLoop = function() {
     ctx.fillStyle = 'red'
     ctx.translate(self.canvasElement.width/2 - self.player.x, self.canvasElement.height/2 - self.player.y);
     ctx.drawImage(self.background, -self.canvasElement.width, -self.canvasElement.height);
-    ctx.drawImage(self.canvasElement, -self.canvasElement.width/2 + self.player.x + 20, -self.canvasElement.height/2 + self.player.y + 20, self.canvasElement.width/10, self.canvasElement.height/10);
-    // ctx.fillRect(-self.canvasElement.width/2 + self.player.x + 80, -self.canvasElement.height/2 + self.player.y + 50, 10, 10);
-    ctx.arc(-self.canvasElement.width/2 + self.player.x + 90, -self.canvasElement.height/2 + self.player.y + 60, 5, 0, 2 * Math.PI)
-    ctx.fill();
 
     /// DRAW ///
  
@@ -249,6 +247,10 @@ Game.prototype.startLoop = function() {
     self.trees.forEach(function(item) {
       item.draw();
     });
+
+    ctx.drawImage(self.canvasElement, -self.canvasElement.width/2 + self.player.x + 20, -self.canvasElement.height/2 + self.player.y + 20, self.canvasElement.width/10, self.canvasElement.height/10);
+    ctx.arc(-self.canvasElement.width/2 + self.player.x + 90, -self.canvasElement.height/2 + self.player.y + 60, 5, 0, 2 * Math.PI)
+    ctx.fill();
 
     ctx.restore();
     if (!self.gameIsOver && !self.isPause) {
@@ -313,10 +315,11 @@ Game.prototype.checkIfShootsCollidesBigEnemies = function (){
   for (var i = 0; i < self.shoots.length; i++){
     for (var j = 0; j < self.bigEnemies.length; j++){
       if (j !== i){
-        var a = self.bigEnemies[j].size + self.shoots[i].radius;
-        var x = self.bigEnemies[j].x - self.shoots[i].x;
-        var y = self.bigEnemies[j].y - self.shoots[i].y;
-        if (a > Math.sqrt( (x * x) + (y * y) )) {
+        const collidesRight = self.shoots[i].x + self.shoots[i].radius / 2 > self.bigEnemies[j].x - self.bigEnemies[j].size / 2;
+        const collidesLeft = self.shoots[i].x - self.shoots[i].radius / 2 < self.bigEnemies[j].x + self.bigEnemies[j].size / 2;
+        const collidesTop = self.shoots[i].y - self.shoots[i].radius / 2 < self.bigEnemies[j].y + self.bigEnemies[j].size / 2;
+        const collidesBottom = self.shoots[i].y + self.shoots[i].radius / 2 > self.bigEnemies[j].y - self.bigEnemies[j].size / 2;
+        if (collidesLeft && collidesRight && collidesTop && collidesBottom) {
           self.bigEnemies[j].live--;
           self.shoots.splice(i, 1);
           if (!self.bigEnemies[j].live) {

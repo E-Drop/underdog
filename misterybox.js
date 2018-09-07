@@ -21,7 +21,6 @@ Box.prototype.collide = function () {
 Box.prototype.draw = function () {
   var self = this;
 
-  self.ctx.fillStyle = 'green'
   var xPosition = self.x - self.size / 2;
   var yPosition = self.y - self.size / 2;
   self.ctx.drawImage(self.image, xPosition, yPosition, self.size, self.size);
